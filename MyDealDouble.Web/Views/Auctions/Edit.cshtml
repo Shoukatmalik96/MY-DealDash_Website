@@ -1,0 +1,45 @@
+﻿@model MyDealDouble.Entities.Auction
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form id="editForm" action="/Auctions/Edit" method="post">
+
+	<input name="ID" value="@Model.ID" type="hidden"/>
+	<br />
+	@Html.Label("Title");
+	<input name="Title" value="@Model.Title" />
+	<br />
+	@Html.Label("Price");
+	<input name="ActualAmount" value="@Model.ActualAmount" />
+	<br />
+	@Html.Label("Description");
+	<input name="Description" value="@Model.Description" />
+	<br />
+	@Html.Label("StartingDate");
+	<input name="StartingDate" value="@Model.StartingDate" />
+	<br />
+	@Html.Label("EndingDate");
+	<input name="EndingDate" value="@Model.EndingDate" />
+	<br />
+	<button type="button" id="saveButton">Submit</button>
+
+</form>
+
+<script>
+
+  $("#saveButton").click(function () {
+
+		$.ajax({
+			url: "@Url.Action("Edit","Auctions")",
+			type: "post",
+			data: $("#editForm").serialize()
+		}).done(function (response) {
+
+			$("#listingArea").html(response);
+		});
+	});
+
+</script>
