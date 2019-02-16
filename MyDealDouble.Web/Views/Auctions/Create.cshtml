@@ -7,22 +7,30 @@
 
 <form id="CreateForm" action="/Auctions/Create" method="post">
 
-	@Html.Label("Title");
-	<input name="Title" />
-	<br />
-	@Html.Label("Price");
-	<input name="ActualAmount" />
-	<br />
-	@Html.Label("Description");
-	<input name="Description" />
-	<br />
-	@Html.Label("StartingDate");
-	<input name="StartingDate" />
-	<br />
-	@Html.Label("EndingDate");
-	<input name="EndingDate" />
-	<br />
-	<button type="button" id="saveButton">Save</button>
+	<div class="form-group">
+
+		@Html.Label("Title :")
+		<input name="Title" class="form-control"/>
+	</div>
+	<div class="form-group">
+		@Html.Label("Price:")
+		<input name="ActualAmount" class="form-control"/>
+	</div>
+	<div class="form-group">
+		<br />
+		@Html.Label("Description:")
+		<input name="Description" class="form-control"/>
+	</div>
+	<div class="form-group">
+		@Html.Label("StartingDate:")
+		<input name="StartingDate"class="form-control" />
+	</div>
+	<div class="form-group">
+		@Html.Label("EndingDate:")
+		<input name="EndingDate" class="form-control"/>
+	</div>
+
+	<button type="button" id="saveButton" class="btn btn-outline-secondary">Save</button>
 
 </form>
 

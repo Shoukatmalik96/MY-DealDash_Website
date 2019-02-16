@@ -3,46 +3,45 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<div id="listingArea">
-	<table>
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Price</th>
-				<th>StartingDate</th>
-				<th>EndingDate</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var auction in Model.Auctions)
-			{
+<div class="row">
+	<div class="col-lg-12" id="listingArea">
+		<table class="table table-hover">
+			<thead>
 				<tr>
-					<th>@auction.Title</th>
-					<th>@auction.Description</th>
-					<th>@auction.ActualAmount</th>
-					<th>@auction.StartingDate</th>
-					<th>@auction.EndingDate</th>
-					<th>
-						<Button class="editButton"  data-id="@auction.ID">Edit</Button>
-						<Button class="deleteButton" data-id="@auction.ID">Delete</Button>
-					</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>StartingDate</th>
+					<th>EndingDate</th>
+					<th>Actions</th>
 				</tr>
-			}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				@foreach (var auction in Model.Auctions)
+				{
+					<tr>
+						<th>@auction.Title</th>
+						<th>@auction.Description</th>
+						<th>@auction.ActualAmount</th>
+						<th>@auction.StartingDate</th>
+						<th>@auction.EndingDate</th>
+						<th>
+							<Button class="editButton btn btn-primary" data-id="@auction.ID">Edit</Button>
+							<Button class="deleteButton btn btn-danger" data-id="@auction.ID">Delete</Button>
+						</th>
+					</tr>
+				}
+			</tbody>
+		</table>
 
 
-	<div id="ContentArea"></div>
+		<div id="ContentArea"></div>
 
-	<button id="addNewbutton" type="button">AddNewAuction</button>
+		<button id="addNewbutton" type="button" class="btn btn-success">AddNewAuction</button>
 
 
 
-<script>
+		<script>
 	$("#addNewbutton").click(function () {
 
 		$.ajax({
@@ -87,8 +86,9 @@
 			   $("#listingArea").html(response);
 		    });
 		}
-		
-	});
-</script>
 
+	});
+		</script>
+
+	</div>
 </div>

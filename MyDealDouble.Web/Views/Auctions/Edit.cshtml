@@ -6,25 +6,38 @@
 <h2>Edit</h2>
 
 <form id="editForm" action="/Auctions/Edit" method="post">
-
-	<input name="ID" value="@Model.ID" type="hidden"/>
-	<br />
-	@Html.Label("Title");
-	<input name="Title" value="@Model.Title" />
-	<br />
-	@Html.Label("Price");
-	<input name="ActualAmount" value="@Model.ActualAmount" />
-	<br />
-	@Html.Label("Description");
-	<input name="Description" value="@Model.Description" />
-	<br />
-	@Html.Label("StartingDate");
-	<input name="StartingDate" value="@Model.StartingDate" />
-	<br />
-	@Html.Label("EndingDate");
-	<input name="EndingDate" value="@Model.EndingDate" />
-	<br />
-	<button type="button" id="saveButton">Submit</button>
+	<div class="form-group">
+		<input name="ID" value="@Model.ID" type="hidden" />
+	</div>
+	<div class="form-group">
+		@Html.Label("Title :")
+		<input name="Title" value="@Model.Title"  class="form-control"/>
+	</div>
+	
+	<div class="form-group">
+		@Html.Label("Price :")
+		<input name="ActualAmount" value="@Model.ActualAmount" class="form-control"/>
+	</div>
+	
+	<div class="form-group">
+		@Html.Label("Description :")
+		<input name="Description" value="@Model.Description" class="form-control"/>
+	</div>
+	
+	<div class="form-group">
+		@Html.Label("StartingDate :")
+		<input name="StartingDate" value="@Model.StartingDate" class="form-control"/>
+	</div>
+	
+	<div class="form-group">
+		@Html.Label("EndingDate :")
+		<input name="EndingDate" value="@Model.EndingDate" class="form-control"/>
+	</div>
+	
+	<div class="form-group">
+		<button type="button" id="saveButton" class="btn btn-outline-primary">Submit</button>
+	</div>
+	
 
 </form>
 

@@ -41,7 +41,7 @@ namespace MyDealDouble.Web.Controllers
 		public ActionResult Edit(int ID)
 		{
 			var auction = AuctionsService.GetAuctionById(ID);
-			return View(auction);
+			return PartialView(auction);
 		}
 		[HttpPost]
 		public ActionResult Edit(Auction auction)
