@@ -1,44 +1,49 @@
 ﻿@model MyDealDouble.Entities.Auction
 @{
-    ViewBag.Title = "Edit";
+	ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
+<div class="modal-header">
+	<h5 class="modal-title" id="exampleModalLongTitle">Edit Auction</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
 <form id="editForm" action="/Auctions/Edit" method="post">
-	<div class="form-group">
-		<input name="ID" value="@Model.ID" type="hidden" />
+
+	<div class="modal-body">
+		<div class="form-group">
+			<input name="ID" value="@Model.ID" type="hidden" />
+		</div>
+		<div class="form-group">
+			@Html.Label("Title :")
+			<input name="Title" value="@Model.Title" class="form-control" />
+		</div>
+
+		<div class="form-group">
+			@Html.Label("Price :")
+			<input name="ActualAmount" value="@Model.ActualAmount" class="form-control" />
+		</div>
+
+		<div class="form-group">
+			@Html.Label("Description :")
+			<input name="Description" value="@Model.Description" class="form-control" />
+		</div>
+
+		<div class="form-group">
+			@Html.Label("StartingDate :")
+			<input name="StartingDate" value="@Model.StartingDate" class="form-control" />
+		</div>
+
+		<div class="form-group">
+			@Html.Label("EndingDate :")
+			<input name="EndingDate" value="@Model.EndingDate" class="form-control" />
+		</div>
 	</div>
-	<div class="form-group">
-		@Html.Label("Title :")
-		<input name="Title" value="@Model.Title"  class="form-control"/>
-	</div>
-	
-	<div class="form-group">
-		@Html.Label("Price :")
-		<input name="ActualAmount" value="@Model.ActualAmount" class="form-control"/>
-	</div>
-	
-	<div class="form-group">
-		@Html.Label("Description :")
-		<input name="Description" value="@Model.Description" class="form-control"/>
-	</div>
-	
-	<div class="form-group">
-		@Html.Label("StartingDate :")
-		<input name="StartingDate" value="@Model.StartingDate" class="form-control"/>
-	</div>
-	
-	<div class="form-group">
-		@Html.Label("EndingDate :")
-		<input name="EndingDate" value="@Model.EndingDate" class="form-control"/>
-	</div>
-	
-	<div class="form-group">
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		<button type="button" id="saveButton" class="btn btn-outline-primary">Submit</button>
 	</div>
-	
-
 </form>
 
 <script>
@@ -51,7 +56,10 @@
 			data: $("#editForm").serialize()
 		}).done(function (response) {
 
+			
 			$("#listingArea").html(response);
+			$('#formModal').modal('toggle');
+			
 		});
 	});
 

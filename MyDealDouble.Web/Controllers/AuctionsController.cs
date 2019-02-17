@@ -14,22 +14,26 @@ namespace MyDealDouble.Web.Controllers
     {
 		AuctionsService AuctionsService = new AuctionsService();
 
+
 		public ActionResult Index()
         {
 			AuctionsListingViewModels model = new AuctionsListingViewModels();
 			model.Auctions = AuctionsService.GetAuctions();
 			model.PageTitle = "Auctions";
 			model.PageDescription = "Auctions Listing Page";
-			if (Request.IsAjaxRequest())
-			{
-				return PartialView(model);
-			}
-			else
-			{
-				return View(model);
-			}
-		}
 			
+				return View(model);
+			
+		}
+
+		public ActionResult Listing()
+		{
+			AuctionsListingViewModels model = new AuctionsListingViewModels();
+			model.Auctions = AuctionsService.GetAuctions();
+			return PartialView(model);
+			
+		}
+
 		[HttpGet]
 		public ActionResult Create()
 		{
@@ -39,7 +43,7 @@ namespace MyDealDouble.Web.Controllers
 		public ActionResult Create(Auction auction)
 		{
 			AuctionsService.saveAuction(auction);
-			return RedirectToAction("Index");
+			return RedirectToAction("Listing");
 		}
 		[HttpGet]
 		public ActionResult Edit(int ID)
@@ -51,7 +55,7 @@ namespace MyDealDouble.Web.Controllers
 		public ActionResult Edit(Auction auction)
 		{
 			AuctionsService.EditAuction(auction);
-			return RedirectToAction("Index");
+			return RedirectToAction("Listing");
 		}
 		[HttpGet]
 		public ActionResult Delete(int ID)
@@ -64,7 +68,7 @@ namespace MyDealDouble.Web.Controllers
 		public ActionResult Delete(Auction auction)
 		{
 			AuctionsService.DeleteAuction(auction);
-			return RedirectToAction("Index");
+			return RedirectToAction("Listing");
 		}
 		public ActionResult Details(int ID)
 		{

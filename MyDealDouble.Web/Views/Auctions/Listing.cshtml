@@ -1,0 +1,75 @@
+﻿@model MyDealDouble.Web.viewModels.AuctionsListingViewModels
+@{
+	ViewBag.Title = "Index";
+}
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>StartingDate</th>
+			<th>EndingDate</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var auction in Model.Auctions)
+		{
+			<tr>
+				<td>@auction.Title</td>
+				<td>@auction.Description</td>
+				<td>@auction.ActualAmount</td>
+				<td>@auction.StartingDate</td>
+				<td>@auction.EndingDate</td>
+				<td>
+					<Button class="editButton btn btn-primary" data-id="@auction.ID" data-toggle="modal" data-target="#formModal">Edit</Button>
+					<Button class="deleteButton btn btn-danger" data-id="@auction.ID">Delete</Button>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<script>
+	$(".editButton").click(function () {
+
+		$.ajax({
+			url: "@Url.Action("Edit","Auctions")",
+			type: "get",
+			data: {
+				Id: $(this).attr("data-id")
+			}
+		}).done(function (response) {
+
+			$("#formModal").modal('toggle');
+			$("#ContentArea").html(response);
+
+		}).fail(function () {
+			alert("Sorry ! Try Again")
+		});
+	});
+
+	$(".deleteButton").click(function () {
+
+		var result = confirm("Are you sure you want to delte this record !");
+
+		if (result == true) {
+
+			$.ajax({
+				url: "@Url.Action("Delete","Auctions")",
+				type: "post",
+				data: {
+					Id: $(this).attr("data-id")
+				}
+		    }).done(function (response) {
+
+			   $("#listingArea").html(response);
+		    });
+		}
+
+	});
+
+</script>
+
+
