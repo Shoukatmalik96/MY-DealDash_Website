@@ -1,4 +1,4 @@
-﻿@model MyDealDouble.Web.Models.AuctionListViewModel
+﻿@model MyDealDouble.Web.viewModels.AuctionsListingViewModels
 @{
     ViewBag.Title = "Index";
 }
@@ -20,15 +20,15 @@
 				@foreach (var auction in Model.Auctions)
 				{
 					<tr>
-						<th>@auction.Title</th>
-						<th>@auction.Description</th>
-						<th>@auction.ActualAmount</th>
-						<th>@auction.StartingDate</th>
-						<th>@auction.EndingDate</th>
-						<th>
+						<td>@auction.Title</td>
+						<td>@auction.Description</td>
+						<td>@auction.ActualAmount</td>
+						<td>@auction.StartingDate</td>
+						<td>@auction.EndingDate</td>
+						<td>
 							<Button class="editButton btn btn-primary" data-id="@auction.ID">Edit</Button>
 							<Button class="deleteButton btn btn-danger" data-id="@auction.ID">Delete</Button>
-						</th>
+						</td>
 					</tr>
 				}
 			</tbody>

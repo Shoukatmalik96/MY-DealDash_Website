@@ -1,6 +1,7 @@
 ﻿using MyDealDouble.Entities;
 using MyDealDouble.Services;
 using MyDealDouble.Web.Models;
+using MyDealDouble.Web.viewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +16,20 @@ namespace MyDealDouble.Web.Controllers
 
 		public ActionResult Index()
         {
-			AuctionListViewModel model = new AuctionListViewModel();
+			AuctionsListingViewModels model = new AuctionsListingViewModels();
 			model.Auctions = AuctionsService.GetAuctions();
-
+			model.PageTitle = "Auctions";
+			model.PageDescription = "Auctions Listing Page";
 			if (Request.IsAjaxRequest())
 			{
 				return PartialView(model);
 			}
-
-			return View(model);
+			else
+			{
+				return View(model);
+			}
 		}
-
+			
 		[HttpGet]
 		public ActionResult Create()
 		{
@@ -61,6 +65,11 @@ namespace MyDealDouble.Web.Controllers
 		{
 			AuctionsService.DeleteAuction(auction);
 			return RedirectToAction("Index");
+		}
+		public ActionResult Details(int ID)
+		{
+			var aution = AuctionsService.GetAuctionById(ID);
+			return View(aution);
 		}
 	}
 }
