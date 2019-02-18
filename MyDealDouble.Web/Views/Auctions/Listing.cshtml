@@ -25,7 +25,7 @@
 				<td>@auction.EndingDate</td>
 				<td>
 					<Button class="editButton btn btn-primary" data-id="@auction.ID" data-toggle="modal" data-target="#formModal">Edit</Button>
-					<Button class="deleteButton btn btn-danger" data-id="@auction.ID">Delete</Button>
+					<Button class="deleteButton btn btn-danger" data-id="@auction.ID" data-toggle="modal" data-target="#deleteModal">Delete</Button>
 				</td>
 			</tr>
 		}
@@ -51,25 +51,10 @@
 	});
 
 	$(".deleteButton").click(function () {
-
-		var result = confirm("Are you sure you want to delte this record !");
-
-		if (result == true) {
-
-			$.ajax({
-				url: "@Url.Action("Delete","Auctions")",
-				type: "post",
-				data: {
-					Id: $(this).attr("data-id")
-				}
-		    }).done(function (response) {
-
-			   $("#listingArea").html(response);
-		    });
-		}
-
-	});
-
+		
+		$('#deleteModal').modal('toggle');
+		$('#mDeleteButton').attr("data-recordID", $(this).attr("data-id"));
+	});		
 </script>
 
 
