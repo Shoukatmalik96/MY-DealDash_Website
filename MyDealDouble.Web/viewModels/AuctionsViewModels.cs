@@ -16,4 +16,13 @@ namespace MyDealDouble.Web.viewModels
 		public List<Auction> AllAuctions { get; set; }
 		public List<Auction> PromotedAuctions { get; set; }
 	}
+	public class CreateAuctionViewModel : PageViewModel
+	{
+		public string Title { get; set; }
+		public string Description { get; set; }
+		public decimal ActualAmount { get; set; }
+		public DateTime StartingDate { get; set; }
+		public DateTime EndingDate { get; set; }
+		public string AuctionPictures { get; set; }
+	}
 }

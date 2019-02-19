@@ -7,10 +7,12 @@ namespace MyDealDouble.Data.Migrations
     {
         public override void Up()
         {
+            DropColumn("dbo.Auctions", "pictureURL");
         }
         
         public override void Down()
         {
+            AddColumn("dbo.Auctions", "pictureURL", c => c.String());
         }
     }
 }

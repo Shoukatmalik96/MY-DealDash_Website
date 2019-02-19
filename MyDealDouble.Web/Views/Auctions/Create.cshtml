@@ -50,6 +50,16 @@
 
 	$("#saveButton").click(function () {
 
+
+		var imageIDs = [];
+		$("#picturesArea .image").each(function () {
+
+			var imageID = $(this).attr("data-id");
+			imageIDs.push(imageID);
+		});
+
+		$("#pictureIDs").val(imageIDs.join());
+
 		$.ajax({
 			url: "@Url.Action("Create","Auctions")",
 			type: "post",
@@ -64,14 +74,12 @@
 
 		$("#auctionPictures").change(function () {
 
+			var pictures = this.files;
+			var picsData = new FormData();
 
-		var pictures = this.files;
-
-		var picsData = new FormData();
-
-		for (var i = 0; i < pictures.length; i++) {
-			picsData.append("Picture", pictures[i]);
-		}
+			for (var i = 0; i < pictures.length; i++) {
+				picsData.append("Picture", pictures[i]);
+			}
 
 		$.ajax({
 			url: "@Url.Action("UploadPictures", "Shared")",
@@ -82,13 +90,23 @@
 			contentType: false
 		})
 			.done(function (responses) {
-				debugger;
+				
 				for (var i = 0; i < responses.length; i++) {
 					
-				  var picResponse = responses[i];
-					var imgHtml = "<img src='/Content/images/" +picResponse.pictureURL+"'/>";
-				  $("#picturesArea").append(imgHtml);
+					var picResponse = responses[i];
+					AttachNewImage(picResponse.pictureURL, picResponse.ID);
+					
 			    }
 		    });
 	    });
+	 
+	function AttachNewImage(imageURL, imageID) {
+
+		var $newimgHTML = $("#imageTemplate").clone();
+		$newimgHTML.find(".image").attr("src", "/content/images/" + imageURL);
+		$newimgHTML.find(".image").attr("data-id", imageID);
+
+		$("#picturesArea").append($newimgHTML.html());
+	}
+
 </script>

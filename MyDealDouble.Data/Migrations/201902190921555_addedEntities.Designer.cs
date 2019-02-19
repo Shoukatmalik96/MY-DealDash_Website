@@ -13,7 +13,7 @@ namespace MyDealDouble.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201902180847400_addedEntities"; }
+            get { return "201902190921555_addedEntities"; }
         }
         
         string IMigrationMetadata.Source

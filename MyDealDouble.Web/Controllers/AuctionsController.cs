@@ -40,8 +40,29 @@ namespace MyDealDouble.Web.Controllers
 			return PartialView();
 		}
 		[HttpPost]
-		public ActionResult Create(Auction auction)
+		public ActionResult Create(CreateAuctionViewModel model)
 		{
+			Auction auction = new Auction();
+			auction.Title = model.Title;
+			auction.Description = model.Description;
+			auction.ActualAmount = model.ActualAmount;
+			auction.StartingDate = model.StartingDate;
+			auction.EndingDate = model.EndingDate;
+
+			auction.AuctionPictures = new List<AuctionPicture>();
+			var pictureIDs = model.AuctionPictures.Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries)
+																		.Select(ID => int.Parse(ID)).ToList();
+
+
+			//foreach (var picID in pictureIDs)
+			//{
+			//	var auctionPictures = new AuctionPicture();
+			//	auctionPictures.PictureID = picID;
+			//  auction.AuctionPictures.Add(auctionPictures);
+			//}
+
+			// Same logic by using foreach
+			auction.AuctionPictures.AddRange(pictureIDs.Select(x => new AuctionPicture() { PictureID = x }));
 			AuctionsService.saveAuction(auction);
 			return RedirectToAction("Listing");
 		}
