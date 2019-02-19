@@ -105,8 +105,8 @@
 		var $newimgHTML = $("#imageTemplate").clone();
 		$newimgHTML.find(".image").attr("src", "/content/images/" + imageURL);
 		$newimgHTML.find(".image").attr("data-id", imageID);
-
 		$("#picturesArea").append($newimgHTML.html());
+		RemoveImagesOnClick();
 	}
 
 </script>

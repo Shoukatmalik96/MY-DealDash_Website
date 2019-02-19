@@ -79,7 +79,14 @@
 				$("#listingArea").html(response);
 				$('#deleteModal').modal('toggle');
 			});
-	});
+	   });
 
-	
+
+	function RemoveImagesOnClick() {
+
+		$("#picturesArea . image").click(function () {
+
+			$(this).remove();
+		});
+	}
 </script>
