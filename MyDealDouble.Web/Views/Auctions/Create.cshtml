@@ -14,24 +14,30 @@
 	<div class="modal-body">
 		<div class="form-group">
 			@Html.Label("Title :")
-			<input name="Title" class="form-control"/>
+			<input name="Title" class="form-control" />
 		</div>
 		<div class="form-group">
 			@Html.Label("Price:")
-			<input name="ActualAmount" class="form-control"/>
+			<input name="ActualAmount" class="form-control" />
 		</div>
 		<div class="form-group">
 			<br />
 			@Html.Label("Description:")
-			<input name="Description" class="form-control"/>
+			<input name="Description" class="form-control" />
 		</div>
 		<div class="form-group">
 			@Html.Label("StartingDate:")
-			<input name="StartingDate" class="form-control"/>
+			<input name="StartingDate" class="form-control" />
 		</div>
 		<div class="form-group">
 			@Html.Label("EndingDate:")
-			<input name="EndingDate" class="form-control"/>
+			<input name="EndingDate" class="form-control" />
+		</div>
+		<div class="form-group">
+			@Html.Label("Select Pictures:")
+			<input id="auctionPictures" class="form-control" name="AuctionPictures" type="file" multiple />
+			<div id="picturesArea" class="mt-2"></div>
+			<input type="hidden" name="AuctionPictures" id="pictureIDs" />
 		</div>
 	</div>
 	<div class="modal-footer">
@@ -55,4 +61,34 @@
 			$('#formModal').modal('toggle');
 		});
 	});
+
+		$("#auctionPictures").change(function () {
+
+
+		var pictures = this.files;
+
+		var picsData = new FormData();
+
+		for (var i = 0; i < pictures.length; i++) {
+			picsData.append("Picture", pictures[i]);
+		}
+
+		$.ajax({
+			url: "@Url.Action("UploadPictures", "Shared")",
+			type: "post",
+			data: picsData,
+			dateType: "json",
+			processData: false,
+			contentType: false
+		})
+			.done(function (responses) {
+				debugger;
+				for (var i = 0; i < responses.length; i++) {
+					
+				  var picResponse = responses[i];
+					var imgHtml = "<img src='/Content/images/" +picResponse.pictureURL+"'/>";
+				  $("#picturesArea").append(imgHtml);
+			    }
+		    });
+	    });
 </script>
