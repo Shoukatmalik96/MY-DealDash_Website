@@ -8,7 +8,7 @@ namespace MyDealDouble.Entities
 {
 	public class Auction: BaseEntity
 	{
-		public Category Category { get; set; }
+		public virtual Category Category { get; set; }
 		public int CategoryID { get; set; }
 		public string Title { get; set; }
 		public string Description { get; set; }
@@ -16,7 +16,7 @@ namespace MyDealDouble.Entities
 		public DateTime StartingDate { get; set; }
 		public DateTime EndingDate { get; set; }
 
-		public List<AuctionPicture> AuctionPictures { get; set; }
+		public virtual List<AuctionPicture> AuctionPictures { get; set; }
 	}
 }
 
