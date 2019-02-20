@@ -13,7 +13,7 @@ namespace MyDealDouble.Web.Controllers
     public class AuctionsController : Controller
     {
 		AuctionsService AuctionsService = new AuctionsService();
-
+		CategoriesService CategoriesService = new CategoriesService();
 
 		public ActionResult Index()
         {
@@ -37,7 +37,9 @@ namespace MyDealDouble.Web.Controllers
 		[HttpGet]
 		public ActionResult Create()
 		{
-			return PartialView();
+			CreateAuctionViewModel model = new CreateAuctionViewModel();
+			model.Categories = CategoriesService.GetCategories();
+			return PartialView(model);
 		}
 		[HttpPost]
 		public ActionResult Create(CreateAuctionViewModel model)
@@ -48,6 +50,7 @@ namespace MyDealDouble.Web.Controllers
 			auction.ActualAmount = model.ActualAmount;
 			auction.StartingDate = model.StartingDate;
 			auction.EndingDate = model.EndingDate;
+			auction.CategoryID = model.CategoryID;
 
 			auction.AuctionPictures = new List<AuctionPicture>();
 			var pictureIDs = model.AuctionPictures.Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries)

@@ -49,9 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DealDashDataContext.cs" />
-    <Compile Include="Migrations\201902190921555_addedEntities.cs" />
-    <Compile Include="Migrations\201902190921555_addedEntities.Designer.cs">
-      <DependentUpon>201902190921555_addedEntities.cs</DependentUpon>
+    <Compile Include="Migrations\201902200552109_myNewMigration.cs" />
+    <Compile Include="Migrations\201902200552109_myNewMigration.Designer.cs">
+      <DependentUpon>201902200552109_myNewMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,8 +67,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902190921555_addedEntities.resx">
-      <DependentUpon>201902190921555_addedEntities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902200552109_myNewMigration.resx">
+      <DependentUpon>201902200552109_myNewMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
