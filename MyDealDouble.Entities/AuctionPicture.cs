@@ -10,6 +10,6 @@ namespace MyDealDouble.Entities
 	{
 		public int AuctionID { get; set; }
 		public int PictureID { get; set; }
-		public Picture picture { get; set; }
+		public virtual Picture picture { get; set; }
 	}
 }

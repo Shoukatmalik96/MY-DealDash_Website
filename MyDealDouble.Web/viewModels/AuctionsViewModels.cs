@@ -6,6 +6,11 @@ using System.Web;
 
 namespace MyDealDouble.Web.viewModels
 {
+	public class AuctionDetailsViewModel : PageViewModel
+	{
+		public Auction Auction { get; set; }
+	}
+
 	public class AuctionsListingViewModels : PageViewModel
 	{
 		public List<Auction> Auctions { get; set; }

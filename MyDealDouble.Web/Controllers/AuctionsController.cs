@@ -96,8 +96,9 @@ namespace MyDealDouble.Web.Controllers
 		}
 		public ActionResult Details(int ID)
 		{
-			var aution = AuctionsService.GetAuctionById(ID);
-			return View(aution);
+			AuctionDetailsViewModel model = new AuctionDetailsViewModel();
+			model.Auction= AuctionsService.GetAuctionById(ID);
+			return View(model);
 		}
 	}
 }
