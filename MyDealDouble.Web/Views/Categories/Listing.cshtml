@@ -1,0 +1,56 @@
+﻿@model MyDealDouble.Web.viewModels.CategoriesListingViewModels
+@{
+	ViewBag.Title = "Index";
+}
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Category Name</th>
+			<th>Description</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var category in Model.categories)
+		{
+			<tr>
+				<td>@category.Name</td>
+				<td>@category.Description</td>
+				<td>
+					<Button class="editButton btn btn-primary" data-id="@category.ID" data-toggle="modal" data-target="#modalCartegories">Edit</Button>
+					<Button class="deleteButton btn btn-danger" data-id="@category.ID" data-toggle="modal" data-target="#deleteModal">Delete</Button>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<script>
+	$(".editButton").click(function () {
+
+		$.ajax({
+			url: "@Url.Action("Edit","Categories")",
+			type: "get",
+			data: {
+				Id: $(this).attr("data-id")
+			}
+		}).done(function (response) {
+
+		
+			$("#ContentArea").html(response);
+			$("#modalCartegories").modal('toggle');
+
+		}).fail(function () {
+			alert("Sorry ! Try Again")
+		});
+	});
+
+	$(".deleteButton").click(function () {
+
+		$('#deleteModal').modal('toggle');
+		$('#mDeleteButton').attr("data-recordID", $(this).attr("data-id"));
+	});
+</script>
+
+
+

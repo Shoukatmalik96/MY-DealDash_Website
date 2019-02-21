@@ -12,7 +12,7 @@ namespace MyDealDouble.Services
 	{
 		DealDashDataContext context = new DealDashDataContext();
 
-		public Category GetAuctionById(int Id)
+		public Category GetCategoryById(int Id)
 		{
 			Category result = null;
 			result = context.Categories.Find(Id);

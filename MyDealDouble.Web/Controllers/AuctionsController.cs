@@ -22,7 +22,7 @@ namespace MyDealDouble.Web.Controllers
 			model.PageTitle = "Auctions";
 			model.PageDescription = "Auctions Listing Page";
 			
-				return View(model);
+			return View(model);
 			
 		}
 

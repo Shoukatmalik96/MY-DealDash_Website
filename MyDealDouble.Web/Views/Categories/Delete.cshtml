@@ -1,0 +1,14 @@
+﻿@model MyDealDouble.Web.viewModels.CategoriesViewModel
+
+<h3>Are you sure you want to delete this record ?</h3>
+<form id="deleteForm" action="/Categories/Delete" method="post">
+
+	<div class="modal-body">
+		<div>
+			<input name="ID" class="form-control" value="@Model.category.ID" type="hidden" />
+		</div>
+		
+
+		<button class="btn btn-outline-danger">Delete Category</button>
+	</div>
+</form>
