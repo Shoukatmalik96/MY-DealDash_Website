@@ -53,6 +53,10 @@
     <Compile Include="Migrations\201902200552109_myNewMigration.Designer.cs">
       <DependentUpon>201902200552109_myNewMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902220806535_update-auctionEntity.cs" />
+    <Compile Include="Migrations\201902220806535_update-auctionEntity.Designer.cs">
+      <DependentUpon>201902220806535_update-auctionEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902200552109_myNewMigration.resx">
       <DependentUpon>201902200552109_myNewMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902220806535_update-auctionEntity.resx">
+      <DependentUpon>201902220806535_update-auctionEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

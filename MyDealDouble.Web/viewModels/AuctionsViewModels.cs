@@ -23,14 +23,16 @@ namespace MyDealDouble.Web.viewModels
 	}
 	public class CreateAuctionViewModel : PageViewModel
 	{
+		public int ID { get; set; }
 		public int CategoryID { get; set; }
 		public string Title { get; set; }
 		public string Description { get; set; }
 		public decimal ActualAmount { get; set; }
-		public DateTime StartingDate { get; set; }
-		public DateTime EndingDate { get; set; }
+		public DateTime? StartingTime { get; set; }
+		public DateTime? EndingTime { get; set; }
 		public string AuctionPictures { get; set; }
 
 		public List<Category> Categories { get; set; }
+		public List<AuctionPicture> AuctionPicturesList { get; set; }
 	}
 }

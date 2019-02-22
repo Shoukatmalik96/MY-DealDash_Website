@@ -35,7 +35,7 @@ namespace MyDealDouble.Services
 			context.Auctions.Add(auction);
 			context.SaveChanges();
 	    }
-		public void EditAuction(Auction auction)
+		public void UpdateAuction(Auction auction)
 		{
 			context.Entry(auction).State = System.Data.Entity.EntityState.Modified;
 			context.SaveChanges();

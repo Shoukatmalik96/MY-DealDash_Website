@@ -1,66 +1,139 @@
-﻿@model MyDealDouble.Entities.Auction
-@{
-	ViewBag.Title = "Edit";
-}
+﻿@model MyDealDouble.Web.viewModels.CreateAuctionViewModel
 
 <div class="modal-header">
-	<h5 class="modal-title" id="exampleModalLongTitle">Edit Auction</h5>
+	<h5 class="modal-title">Edit Auction</h5>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
-<form id="editForm" action="/Auctions/Edit" method="post">
-
+<form id="editForm" method="post">
 	<div class="modal-body">
+		<input type="hidden" name="ID" value="@Model.ID" />
+
 		<div class="form-group">
-			<input name="ID" value="@Model.ID" type="hidden" />
-		</div>
-		<div class="form-group">
-			@Html.Label("Title :")
-			<input name="Title" value="@Model.Title" class="form-control" />
+			<label>
+				Title
+			</label>
+			<input class="form-control" name="Title" value="@Model.Title" />
 		</div>
 
 		<div class="form-group">
-			@Html.Label("Price :")
-			<input name="ActualAmount" value="@Model.ActualAmount" class="form-control" />
+			<label>
+				Category
+			</label>
+			<select class="form-control" name="CategoryID">
+				@foreach (var category in Model.Categories)
+				{
+					var selected = category.ID == Model.CategoryID ? "selected" : string.Empty;
+
+					<option value="@category.ID" @selected>@category.Name</option>
+				}
+			</select>
 		</div>
 
 		<div class="form-group">
-			@Html.Label("Description :")
-			<input name="Description" value="@Model.Description" class="form-control" />
+			<label>
+				Description
+			</label>
+			<input class="form-control" name="Description" value="@Model.Description" />
 		</div>
 
 		<div class="form-group">
-			@Html.Label("StartingDate :")
-			<input name="StartingDate" value="@Model.StartingDate" class="form-control" />
+			<label>
+				ActualAmount
+			</label>
+			<input class="form-control" name="ActualAmount" value="@Model.ActualAmount" />
 		</div>
 
 		<div class="form-group">
-			@Html.Label("EndingDate :")
-			<input name="EndingDate" value="@Model.EndingDate" class="form-control" />
+			<label>
+				StartingTime
+			</label>
+			<input class="form-control" name="StartingTime" value="@Model.StartingTime" />
+		</div>
+
+		<div class="form-group">
+			<label>
+				EndingTime
+			</label>
+			<input class="form-control" name="EndingTime" value="@Model.EndingTime" />
+		</div>
+
+		<div class="form-group">
+			<label>
+				Select Pictures
+			</label>
+			<input id="auctionPictures" class="form-control" name="AuctionPictures" type="file" multiple />
+			<div id="picturesArea" class="mt-2">
+				@if (Model.AuctionPicturesList != null && Model.AuctionPicturesList.Count > 0)
+				{
+					foreach (var image in Model.AuctionPicturesList)
+					{
+						<img class='image img-thumbnail' src='/content/images/@image.picture.URL' data-id="@image.picture.ID" style="width: 200px; height: 200px;" />
+					}
+				}
+			</div>
+			<input type="hidden" name="AuctionPictures" id="pictureIDs" />
 		</div>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		<button type="button" id="saveButton" class="btn btn-outline-primary">Submit</button>
+		<button class="btn btn-success" type="button" id="saveButton">
+			Save
+		</button>
 	</div>
 </form>
 
 <script>
+	RemoveImagesOnClick();
 
-  $("#saveButton").click(function () {
+	$("#saveButton").click(function () {
+
+		var imageIDs = [];
+
+		$("#picturesArea .image").each(function () {
+			var imageID = $(this).attr("data-id");
+
+			imageIDs.push(imageID);
+		});
+
+		$("#pictureIDs").val(imageIDs.join());
 
 		$.ajax({
-			url: "@Url.Action("Edit","Auctions")",
-			type: "post",
+			url: "@Url.Action("Edit", "Auctions")",
+			method: "post",
 			data: $("#editForm").serialize()
-		}).done(function (response) {
-
-			
+		})
+		.done(function (response) {
 			$("#listingArea").html(response);
-			$("#modalCartegories").modal('toggle');
-			
+			$('#formModal').modal('toggle');
 		});
 	});
 
+	$("#auctionPictures").change(function () {
+
+		var pictures = this.files;
+
+		var picsData = new FormData();
+
+		for (var i = 0; i < pictures.length; i++) {
+			picsData.append("Picture", pictures[i]);
+		}
+
+		$.ajax({
+			url: "@Url.Action("UploadPictures", "Shared")",
+			type: "post",
+			data: picsData,
+			dateType: "json",
+			processData: false,
+			contentType: false
+		})
+		.done(function (responses) {
+			for (var i = 0; i < responses.length; i++) {
+				var picResponse = responses[i];
+
+				AttachNewImage(picResponse.pictureURL, picResponse.ID);
+			}
+		});
+	});
 </script>

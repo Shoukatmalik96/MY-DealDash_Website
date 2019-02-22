@@ -385,7 +385,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Auctions\Create.cshtml" />
-    <Content Include="Views\Auctions\Edit.cshtml" />
     <Content Include="Views\Auctions\Delete.cshtml" />
     <Content Include="Views\Auctions\Index.cshtml" />
     <Content Include="Views\Auctions\Details.cshtml" />
@@ -396,6 +395,7 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Auctions\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
