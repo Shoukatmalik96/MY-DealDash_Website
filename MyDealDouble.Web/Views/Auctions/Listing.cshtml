@@ -1,4 +1,4 @@
-﻿@model MyDealDouble.Web.viewModels.AuctionsListingViewModels
+﻿@model MyDealDouble.Web.viewModels.AuctionsListingViewModel
 @{
 	ViewBag.Title = "Index";
 }
@@ -18,21 +18,67 @@
 	<tbody>
 		@foreach (var auction in Model.Auctions)
 		{
-		<tr>
-			<td>@auction.Title</td>
-			<td>@auction.Category.Name</td>
-			<td>@auction.Description</td>
-			<td>@auction.ActualAmount</td>
-			<td>@auction.StartingTime</td>
-			<td>@auction.EndingTime</td>
-			<td>
-				<Button class="editButton btn btn-primary" data-id="@auction.ID" data-toggle="modal" data-target="#formModal">Edit</Button>
-				<Button class="deleteButton btn btn-danger" data-id="@auction.ID" data-toggle="modal" data-target="#deleteModal">Delete</Button>
-			</td>
-		</tr>
+			<tr>
+				<td>@auction.Title</td>
+				<td>@auction.Category.Name</td>
+				<td>@auction.Description</td>
+				<td>@auction.ActualAmount</td>
+				<td>@auction.StartingTime</td>
+				<td>@auction.EndingTime</td>
+				<td>
+					<Button class="editButton btn btn-primary" data-id="@auction.ID" data-toggle="modal" data-target="#formModal">Edit</Button>
+					<Button class="deleteButton btn btn-danger" data-id="@auction.ID" data-toggle="modal" data-target="#deleteModal">Delete</Button>
+				</td>
+			</tr>
 		}
 	</tbody>
 </table>
+
+@if (Model.Pager != null && Model.Pager.TotalPages > 0)
+{
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+
+			@if (Model.Pager.CurrentPage == 1)
+			{
+				<li class="page-item disabled">
+					<a class="page-link" href="#">Previous</a>
+				</li>
+			}
+			else
+			{
+				<li class="page-item">
+					<a class="page-link" href="@Url.Action("Index", "Auctions", new { pageNo = Model.Pager.CurrentPage - 1, categoryID = Model.CategoryID, searchTerm = Model.SearchTerm })">Previous</a>
+				</li>
+			}
+
+			@for (int page = Model.Pager.StartPage; page < Model.Pager.EndPage + 1; page++)
+			{
+				var active = page == Model.Pager.CurrentPage ? "active" : string.Empty;
+
+				<li class="page-item @active">
+					<a class="page-link" href="@Url.Action("Index", "Auctions", new { pageNo = page, categoryID = Model.CategoryID, searchTerm = Model.SearchTerm  })">
+						@page
+					</a>
+				</li>
+			}
+
+			@if (Model.Pager.CurrentPage == Model.Pager.EndPage)
+			{
+				<li class="page-item disabled">
+					<a class="page-link" href="#">Next</a>
+				</li>
+			}
+			else
+			{
+				<li class="page-item">
+					<a class="page-link" href="@Url.Action("Index", "Auctions", new { pageNo = Model.Pager.CurrentPage + 1, categoryID = Model.CategoryID, searchTerm = Model.SearchTerm  })">Next</a>
+				</li>
+			}
+
+		</ul>
+	</nav>
+}
 <script>
 	$(".editButton").click(function () {
 
@@ -53,10 +99,10 @@
 	});
 
 	$(".deleteButton").click(function () {
-		
+
 		$('#deleteModal').modal('toggle');
 		$('#mDeleteButton').attr("data-recordID", $(this).attr("data-id"));
-	});		
+	});
 </script>
 
 

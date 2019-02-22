@@ -15,21 +15,35 @@ namespace MyDealDouble.Web.Controllers
 		AuctionsService AuctionsService = new AuctionsService();
 		CategoriesService categoriesService = new CategoriesService();
 
-		public ActionResult Index()
+		public ActionResult Index(int? categoryID, string searchTerm, int? pageNo)
         {
-			AuctionsListingViewModels model = new AuctionsListingViewModels();
-			model.Auctions = AuctionsService.GetAuctions();
+
+			AuctionsListingViewModel model = new AuctionsListingViewModel();
+
 			model.PageTitle = "Auctions";
-			model.PageDescription = "Auctions Listing Page";
-			
+			model.PageDescription = "Auction Listing Page";
+
+			model.CategoryID = categoryID;
+			model.SearchTerm = searchTerm;
+			model.PageNo = pageNo;
+
+			model.Categories = categoriesService.GetAllCategories();
 			return View(model);
 			
 		}
 
-		public ActionResult Listing()
+		public ActionResult Listing(int? categoryID, string searchTerm, int? pageNo)
 		{
-			AuctionsListingViewModels model = new AuctionsListingViewModels();
-			model.Auctions = AuctionsService.GetAuctions();
+			var pageSize = 2;
+
+			AuctionsListingViewModel model = new AuctionsListingViewModel();
+
+			model.Auctions = AuctionsService.SearchAuctions(categoryID, searchTerm, pageNo, pageSize);
+
+			var totalAuctions = AuctionsService.GetAuctionCount(categoryID, searchTerm);
+
+			model.Pager = new Pager(totalAuctions, pageNo, pageSize);
+
 			return PartialView(model);
 			
 		}

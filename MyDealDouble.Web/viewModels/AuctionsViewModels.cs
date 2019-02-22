@@ -11,10 +11,17 @@ namespace MyDealDouble.Web.viewModels
 		public Auction Auction { get; set; }
 	}
 
-	public class AuctionsListingViewModels : PageViewModel
+	public class AuctionsListingViewModel : PageViewModel
 	{
 		public List<Auction> Auctions { get; set; }
-		
+		public int? CategoryID { get; set; }
+		public string SearchTerm { get; set; }
+
+		public Pager Pager { get; set; }
+		public int? PageNo { get; internal set; }
+
+		public List<Category> Categories { get; set; }
+
 	}
 	public class AuctionsViewModels:PageViewModel
 	{
