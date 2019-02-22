@@ -12,40 +12,33 @@ namespace MyDealDouble.Services
 	{
 		DealDashDataContext context = new DealDashDataContext();
 
-		public Category GetCategoryById(int Id)
+		public List<Category> GetAllCategories()
 		{
-			Category result = null;
-			result = context.Categories.Find(Id);
-			return result;
+			return context.Categories.ToList();
 		}
-		public List<Category> GetCategories()
+
+		public Category GetCategoryByID(int ID)
 		{
-			List<Category> result = null;
-			result = context.Categories.ToList();
-			return result;
+			return context.Categories.Find(ID);
 		}
-		public List<Category> GetPromotedCategories()
-		{
-			List<Category> result = null;
-			result = context.Categories.Take(4).ToList();
-			return result;
-		}
-		public void saveCategory(Category category)
+
+		public void SaveCategory(Category category)
 		{
 			context.Categories.Add(category);
 			context.SaveChanges();
 		}
-		public void EditCategory(Category category)
+
+		public void UpdateCategory(Category category)
 		{
 			context.Entry(category).State = System.Data.Entity.EntityState.Modified;
 			context.SaveChanges();
-
 		}
+
+
 		public void DeleteCategory(Category category)
 		{
 			context.Entry(category).State = System.Data.Entity.EntityState.Deleted;
 			context.SaveChanges();
-
 		}
 	}
 }

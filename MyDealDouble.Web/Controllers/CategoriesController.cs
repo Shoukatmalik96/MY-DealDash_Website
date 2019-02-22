@@ -11,61 +11,94 @@ namespace MyDealDouble.Web.Controllers
 {
     public class CategoriesController : Controller
     {
-		CategoriesService CategoriesService = new CategoriesService();
+		CategoriesService categoriesService = new CategoriesService();
+
+		[HttpGet]
 		public ActionResult Index()
-        {
-			CategoriesListingViewModels models = new CategoriesListingViewModels();
-			models.PageTitle = "Cateories";
-			models.PageDescription = "Categories Listing";
-			return View(models);
-        }
+		{
+			CategoriesListingViewModel model = new CategoriesListingViewModel();
+
+			model.PageTitle = "Categories";
+			model.PageDescription = "Categories Listing Page";
+
+			return View(model);
+		}
+
 		public ActionResult Listing()
 		{
-			CategoriesListingViewModels model = new CategoriesListingViewModels();
-			model.categories = CategoriesService.GetCategories();
-			return PartialView(model);
+			CategoriesListingViewModel model = new CategoriesListingViewModel();
 
+			model.Categories = categoriesService.GetAllCategories();
+
+			return PartialView(model);
 		}
 
 		[HttpGet]
 		public ActionResult Create()
 		{
-			CategoriesViewModel model = new CategoriesViewModel();
-			model.PageTitle = "Category";
-			model.PageDescription = "Categories page";
+			CategoryViewModel model = new CategoryViewModel();
+
 			return PartialView(model);
 		}
+
 		[HttpPost]
-		public ActionResult Create(Category category)
+		public ActionResult Create(CategoryViewModel model)
 		{
-			CategoriesService.saveCategory(category);
-			return RedirectToAction("Index");
+			Category category = new Category();
+			category.Name = model.Name;
+			category.Description = model.Description;
+
+			categoriesService.SaveCategory(category);
+
+			return RedirectToAction("Listing");
 		}
+
 		[HttpGet]
 		public ActionResult Edit(int ID)
 		{
-			CategoriesViewModel model = new CategoriesViewModel();
-			model.category = CategoriesService.GetCategoryById(ID);
+			CategoryViewModel model = new CategoryViewModel();
+
+			var category = categoriesService.GetCategoryByID(ID);
+
+			model.ID = category.ID;
+			model.Name = category.Name;
+			model.Description = category.Description;
+
 			return PartialView(model);
 		}
+
 		[HttpPost]
-		public ActionResult Edit(Category category)
+		public ActionResult Edit(CategoryViewModel model)
 		{
-			CategoriesService.EditCategory(category);
-			return RedirectToAction("Index");
+			Category category = new Category();
+			category.ID = model.ID;
+			category.Name = model.Name;
+			category.Description = model.Description;
+
+			categoriesService.UpdateCategory(category);
+
+			return RedirectToAction("Listing");
 		}
-		[HttpGet]
-		public ActionResult Delete(int ID)
-		{
-			CategoriesViewModel model = new CategoriesViewModel();
-			model.category = CategoriesService.GetCategoryById(ID);
-			return PartialView(model);
-		}
+
 		[HttpPost]
 		public ActionResult Delete(Category category)
 		{
-			CategoriesService.DeleteCategory(category);
-			return RedirectToAction("Index");
+			categoriesService.DeleteCategory(category);
+
+			return RedirectToAction("Listing");
+		}
+
+		[HttpGet]
+		public ActionResult Details(int ID)
+		{
+			CategoryDetailsViewModel model = new CategoryDetailsViewModel();
+
+			model.Category = categoriesService.GetCategoryByID(ID);
+
+			model.PageTitle = "Category Details: " + model.Category.Name;
+			model.PageDescription = model.Category.Description.Substring(0, 10);
+
+			return View(model);
 		}
 	}
 }

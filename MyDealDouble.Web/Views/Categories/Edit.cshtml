@@ -1,46 +1,48 @@
-﻿@model MyDealDouble.Web.viewModels.CategoriesViewModel
+﻿@model MyDealDouble.Web.viewModels.CategoryViewModel
 
 <div class="modal-header">
-	<h5 class="modal-title" id="exampleModalLongTitle">Edit Category</h5>
+	<h5 class="modal-title">Edit Category</h5>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
-<form id="editForm" action="/Categories/Edit" method="post">
-
+<form id="editForm" method="post">
 	<div class="modal-body">
-		<div>
-			<input name="ID" class="form-control" value="@Model.category.ID" type="hidden" />
-		</div>
+		<input type="hidden" name="ID" value="@Model.ID" />
+
 		<div class="form-group">
-			@Html.Label("Category Name :")
-			<input name="Name" class="form-control" value="@Model.category.Name" />
-		</div>
-		<div class="form-group">
-			@Html.Label("Description:")
-			<input name="Description" class="form-control" value="@Model.category.Description" />
+			<label>
+				Name
+			</label>
+			<input class="form-control" name="Name" value="@Model.Name" />
 		</div>
 
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			<button type="button" id="saveButton" class="btn btn-outline-success">Save Category</button>
+		<div class="form-group">
+			<label>
+				Description
+			</label>
+			<input class="form-control" name="Description" value="@Model.Description" />
 		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button class="btn btn-success" type="button" id="saveButton">
+			Save
+		</button>
 	</div>
 </form>
 
 <script>
 
 	$("#saveButton").click(function () {
-
 		$.ajax({
-			url: "@Url.Action("Edit","Categories")",
-			type: "post",
+			url: "@Url.Action("Edit", "Categories")",
+			method: "post",
 			data: $("#editForm").serialize()
-		}).done(function (response) {
-
+		})
+		.done(function (response) {
 			$("#listingArea").html(response);
-			$("#modalCartegories").modal('toggle');
-
+			$('#formModal').modal('toggle');
 		});
 	});
 

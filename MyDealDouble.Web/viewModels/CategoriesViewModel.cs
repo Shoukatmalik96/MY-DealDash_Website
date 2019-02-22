@@ -6,13 +6,28 @@ using System.Web;
 
 namespace MyDealDouble.Web.viewModels
 {
-	public class CategoriesViewModel:PageViewModel
+	public class CategoriesListingViewModel : PageViewModel
 	{
-		public Category  category { get; set; }
+		public List<Category> Categories { get; set; }
 	}
-	public class CategoriesListingViewModels : PageViewModel
-	{
-		public List<Category> categories { get; set; }
 
+	public class CategoriesViewModel : PageViewModel
+	{
+		public List<Category> AllCategories { get; set; }
+	}
+
+	public class CategoryDetailsViewModel : PageViewModel
+	{
+		public Category Category { get; set; }
+	}
+
+
+	public class CategoryViewModel : PageViewModel
+	{
+		public int ID { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
+
+		public List<Auction> Auctions { get; set; }
 	}
 }

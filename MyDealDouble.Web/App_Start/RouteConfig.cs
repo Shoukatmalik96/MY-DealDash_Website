@@ -20,6 +20,12 @@ namespace MyDealDouble.Web
 			);
 
 			routes.MapRoute(
+				name: "CategoriesDetails",
+				url: "categories-details/{id}",
+				defaults: new { controller = "Categories", action = "Details", id = UrlParameter.Optional }
+			);
+
+			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

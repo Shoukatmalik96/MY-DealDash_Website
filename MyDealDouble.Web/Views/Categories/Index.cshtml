@@ -1,34 +1,30 @@
-﻿@model	 MyDealDouble.Web.viewModels.CategoriesListingViewModels
-
+﻿
 <div class="row">
-
 	<div class="col-lg-12 m-2">
 		<div class="float-left">
 			<h2>Categories</h2>
 		</div>
-		<!-- Button trigger modal -->
 		<div class="float-right">
-
-			<button id="addNewbutton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCartegories">Add Category</button>
+			<button class="btn btn-success" id="createButton">Create New Category</button>
 		</div>
+
 		<div id="listingArea">
-			@{Html.RenderAction("Listing"); }
+			@{Html.RenderAction("Listing");}
 		</div>
-		<!-- Modal -->
-		<div class="modal fade" id="modalCartegories" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content" id="ContentArea">
 
+		<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content" id="contentArea">
 				</div>
 			</div>
 		</div>
 
-		<!-- Delete Modal -->
+		<!-- Modal -->
 		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete this record!</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this record?</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -40,40 +36,33 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
-
 </div>
 
 <script>
-	//---------## ADD Category AJAX--------------------
-	$("#addNewbutton").click(function () {
-
+	$("#createButton").click(function () {
 		$.ajax({
-			url: "@Url.Action("Create","Categories")",
-			type:"get"
+			url: "@Url.Action("Create", "Categories")",
+			type: "get"
 		}).done(function (response) {
-
-			$("#ContentArea").html(response);
-			$("#modalCartegories").modal('toggle');
-
-		}).fail(function () {
-			alert("Sorry ! Try Again")
+			$('#formModal').modal('toggle');
+			$("#contentArea").html(response);
 		});
 	});
-	//---------## DELETE Category AJAX--------------------
-	$("#mDeleteButton").click(function () {
 
+
+	$("#mDeleteButton").click(function () {
 		$.ajax({
 			url: "@Url.Action("Delete", "Categories")",
 			type: "post",
 			data: {
-				Id: $(this).attr("data-recordID")
+				ID: $(this).attr("data-recordID")
 			}
-		}).done(function (response) {
-
+		})
+		.done(function (response) {
 			$("#listingArea").html(response);
 			$('#deleteModal').modal('toggle');
 		});
 	});
+
 </script>

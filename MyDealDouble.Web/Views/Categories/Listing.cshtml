@@ -1,56 +1,60 @@
-﻿@model MyDealDouble.Web.viewModels.CategoriesListingViewModels
-@{
-	ViewBag.Title = "Index";
-}
+﻿@model MyDealDouble.Web.viewModels.CategoriesListingViewModel
 
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>Category Name</th>
-			<th>Description</th>
-			<th>Actions</th>
+			<th>
+				Name
+			</th>
+			<th>
+				Description
+			</th>
+			<th>
+				Auctions
+			</th>
+			<th>
+				Actions
+			</th>
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var category in Model.categories)
+		@foreach (var category in Model.Categories)
 		{
 			<tr>
-				<td>@category.Name</td>
-				<td>@category.Description</td>
 				<td>
-					<Button class="editButton btn btn-primary" data-id="@category.ID" data-toggle="modal" data-target="#modalCartegories">Edit</Button>
-					<Button class="deleteButton btn btn-danger" data-id="@category.ID" data-toggle="modal" data-target="#deleteModal">Delete</Button>
+					@category.Name
+				</td>
+				<td>
+					@category.Description
+				</td>
+				<td>
+					@category.Auctions.Count()
+				</td>
+				<td>
+					<button class="editButton btn btn-primary" data-id="@category.ID" data-toggle="modal" data-target="#formModal">Edit</button>
+					<button class="deleteButton btn btn-danger" data-id="@category.ID" data-toggle="modal" data-target="#deleteModal">Delete</button>
 				</td>
 			</tr>
 		}
 	</tbody>
 </table>
+
 <script>
 	$(".editButton").click(function () {
-
 		$.ajax({
-			url: "@Url.Action("Edit","Categories")",
-			type: "get",
+			url: "@Url.Action("Edit", "Categories")",
+			method: "get",
 			data: {
-				Id: $(this).attr("data-id")
+				ID: $(this).attr("data-id")
 			}
 		}).done(function (response) {
-
-		
-			$("#ContentArea").html(response);
-			$("#modalCartegories").modal('toggle');
-
-		}).fail(function () {
-			alert("Sorry ! Try Again")
+			$("#contentArea").html(response);
+			$('#formModal').modal('toggle');
 		});
 	});
 
 	$(".deleteButton").click(function () {
-
 		$('#deleteModal').modal('toggle');
 		$('#mDeleteButton').attr("data-recordID", $(this).attr("data-id"));
 	});
 </script>
-
-
-
