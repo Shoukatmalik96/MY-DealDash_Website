@@ -17,6 +17,7 @@ namespace MyDealDouble.Entities
 		public DateTime? EndingTime { get; set; }
 
 		public virtual List<AuctionPicture> AuctionPictures { get; set; }
+		public virtual List<Bid> Bids { get; set; }
 	}
 }
 

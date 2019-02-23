@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuctionsService.cs" />
+    <Compile Include="BidsService.cs" />
     <Compile Include="CategoriesService.cs" />
     <Compile Include="DealDoubleSingInManager.cs" />
     <Compile Include="DealDoubleUserManager.cs" />
