@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using MyDealDouble.Services;
 using MyDealDouble.Web.Models;
 
 namespace MyDealDouble.Web.Controllers
@@ -13,24 +14,24 @@ namespace MyDealDouble.Web.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private DealDoubleSignInManager _signInManager;
+        private DealDoubleUserManager _userManager;
 
         public ManageController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(DealDoubleUserManager userManager, DealDoubleSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
+        public DealDoubleSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return _signInManager ?? HttpContext.GetOwinContext().Get<DealDoubleSignInManager>();
             }
             private set 
             { 
@@ -38,11 +39,11 @@ namespace MyDealDouble.Web.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
+        public DealDoubleUserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<DealDoubleUserManager>();
             }
             private set
             {
