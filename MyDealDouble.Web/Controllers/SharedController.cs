@@ -58,6 +58,7 @@ namespace MyDealDouble.Web.Controllers
 				Comment.Text = modal.Text;
 				Comment.EntityID = modal.EntityID;
 				Comment.RecordID = modal.RecordID;
+				Comment.Rating = modal.Rating;
 				Comment.UserID = User.Identity.GetUserId();// This take logged in user Id
 				Comment.TimeStamp = DateTime.Now; //Current Server time
 				var res = service.LeaveComment(Comment);
