@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201902231427083_updateBidEntity.Designer.cs">
       <DependentUpon>201902231427083_updateBidEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902241014173_AddCommentEntity.cs" />
+    <Compile Include="Migrations\201902241014173_AddCommentEntity.Designer.cs">
+      <DependentUpon>201902241014173_AddCommentEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902231427083_updateBidEntity.resx">
       <DependentUpon>201902231427083_updateBidEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241014173_AddCommentEntity.resx">
+      <DependentUpon>201902241014173_AddCommentEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

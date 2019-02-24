@@ -69,20 +69,35 @@
 
 			<div class="card card-outline-secondary my-4">
 				<div class="card-header">
-					Product Reviews
+					Comments
 				</div>
 				<div class="card-body">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-					<small class="text-muted">Posted by Anonymous on 3/1/17</small>
-					<hr>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-					<small class="text-muted">Posted by Anonymous on 3/1/17</small>
-					<hr>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-					<small class="text-muted">Posted by Anonymous on 3/1/17</small>
-					<hr>
-					<a href="#" class="btn btn-success">Leave a Review</a>
+
+					@if (Model.Comments != null && Model.Comments.Count > 0)
+					{
+						foreach (var comment in Model.Comments)
+						{
+						    <p><i>@comment.Text.<i></i></p>
+							<small class="text-muted">Posted by @comment.UserID on @comment.TimeStamp</small>
+							<hr>
+						}
+					}
+					else
+					{
+						<p>There are no Comments  on this Auction</p>
+						<hr />
+					}
+					<form id="commentForm">
+						<input type="hidden" name="EntityID" value="23" />
+						<input type="hidden" name="RecordID" value="@Model.Auction.ID" />
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Write your Comment</label>
+							<textarea class="form-control" rows="3" name="Text" placeholder="Write your Comment here"></textarea>
+						</div>
+						<a href="#" type="button" class="btn btn-success" id="btnComment">Leave your Comment</a>
+					</form>
 				</div>
+
 			</div>
 			<!-- /.card -->
 
@@ -98,6 +113,27 @@
 			data: {
 				ID: '@Model.Auction.ID'
 			}
+		}).done(function (response) {
+			debugger;
+			if (response.Success)
+			{
+				window.location.reload();
+			}
+			else {
+				swal("Error!", response.Message, "error");
+			}
+		}).fail(function () {
+			swal("Error!", "Error Occured. Please try again later.", "error");
+		});
+	});
+
+	$("#btnComment").click(function () {
+		debugger;
+		$.ajax({
+			url: "@Url.Action("LeaveComment", "Shared")",
+			type: "post",
+			data: $("#commentForm").serialize()
+
 		}).done(function (response) {
 			debugger;
 			if (response.Success)

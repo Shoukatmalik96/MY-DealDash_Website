@@ -19,5 +19,17 @@ namespace MyDealDouble.Services
 			context.SaveChanges();
 			return picture.ID;
 		}
+		public bool LeaveComment(Comment comment)
+		{
+			context.Comments.Add(comment);
+			// Save changes returns now of rows  
+			//---** if no of rows are greater than zero then comments are added**------------
+			return context.SaveChanges() > 0; 
+
+		}
+		public List<Comment> GetAllComments(int entityID,int recordID)
+		{
+			return context.Comments.Where(x=>x.EntityID == entityID && x.RecordID == recordID).ToList();
+		}
 	}
 }
