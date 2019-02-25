@@ -14,6 +14,7 @@ namespace MyDealDouble.Web.Controllers
     {
 		AuctionsService AuctionsService = new AuctionsService();
 		CategoriesService categoriesService = new CategoriesService();
+		SharedService sharedService = new SharedService();
 
 		public ActionResult Index(int? categoryID, string searchTerm, int? pageNo)
         {
@@ -161,6 +162,8 @@ namespace MyDealDouble.Web.Controllers
 			var latestBidder = model.Auction.Bids.OrderByDescending(x => x.Timestamp).FirstOrDefault();
 
 			model.LatestBidder = latestBidder != null ? latestBidder.User : null;
+
+			model.Comments = sharedService.GetAllComments(23,model.Auction.ID);
 
 			model.PageTitle = "Auctions Details: " + model.Auction.Title;
 			model.PageDescription = model.Auction.Description.Substring(0, 10);

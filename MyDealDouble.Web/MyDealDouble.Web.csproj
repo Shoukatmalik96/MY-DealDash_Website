@@ -192,6 +192,7 @@
     <Compile Include="viewModels\AuctionsViewModels.cs" />
     <Compile Include="viewModels\BaseViewModels.cs" />
     <Compile Include="viewModels\CategoriesViewModel.cs" />
+    <Compile Include="viewModels\SharedViewModals.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />

@@ -1,5 +1,7 @@
-﻿using MyDealDouble.Entities;
+﻿using Microsoft.AspNet.Identity;
+using MyDealDouble.Entities;
 using MyDealDouble.Services;
+using MyDealDouble.Web.viewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,6 +45,29 @@ namespace MyDealDouble.Web.Controllers
 
 			result.Data = picturesJSON;
 
+			return result;
+		}
+
+		public JsonResult LeaveComment(MyDealDouble.Web.viewModels.CommentViewModal modal)
+		{
+			JsonResult result = new JsonResult();
+
+			try
+			{
+				var Comment = new Comment();
+				Comment.Text = modal.Text;
+				Comment.EntityID = modal.EntityID;
+				Comment.RecordID = modal.RecordID;
+				Comment.UserID = User.Identity.GetUserId();// This take logged in user Id
+				Comment.TimeStamp = DateTime.Now; //Current Server time
+				var res = service.LeaveComment(Comment);
+				result.Data = new { Success = res };
+			}
+			catch (Exception ex)
+			{
+				result.Data = new { Success = false, ex.Message };
+				
+			}
 			return result;
 		}
 	}
