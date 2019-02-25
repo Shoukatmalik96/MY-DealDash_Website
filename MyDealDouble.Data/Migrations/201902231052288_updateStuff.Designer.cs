@@ -7,13 +7,13 @@ namespace MyDealDouble.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class updateauctionEntity : IMigrationMetadata
+    public sealed partial class updateStuff : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updateauctionEntity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateStuff));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902220806535_update-auctionEntity"; }
+            get { return "201902231052288_updateStuff"; }
         }
         
         string IMigrationMetadata.Source

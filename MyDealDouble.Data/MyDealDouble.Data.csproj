@@ -37,6 +37,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,13 +55,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DealDashDataContext.cs" />
-    <Compile Include="Migrations\201902200552109_myNewMigration.cs" />
-    <Compile Include="Migrations\201902200552109_myNewMigration.Designer.cs">
-      <DependentUpon>201902200552109_myNewMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201902231052288_updateStuff.cs" />
+    <Compile Include="Migrations\201902231052288_updateStuff.Designer.cs">
+      <DependentUpon>201902231052288_updateStuff.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902220806535_update-auctionEntity.cs" />
-    <Compile Include="Migrations\201902220806535_update-auctionEntity.Designer.cs">
-      <DependentUpon>201902220806535_update-auctionEntity.cs</DependentUpon>
+    <Compile Include="Migrations\201902231322571_BidEntity.cs" />
+    <Compile Include="Migrations\201902231322571_BidEntity.Designer.cs">
+      <DependentUpon>201902231322571_BidEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902231427083_updateBidEntity.cs" />
+    <Compile Include="Migrations\201902231427083_updateBidEntity.Designer.cs">
+      <DependentUpon>201902231427083_updateBidEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,11 +81,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902200552109_myNewMigration.resx">
-      <DependentUpon>201902200552109_myNewMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902231052288_updateStuff.resx">
+      <DependentUpon>201902231052288_updateStuff.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902220806535_update-auctionEntity.resx">
-      <DependentUpon>201902220806535_update-auctionEntity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902231322571_BidEntity.resx">
+      <DependentUpon>201902231322571_BidEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902231427083_updateBidEntity.resx">
+      <DependentUpon>201902231427083_updateBidEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

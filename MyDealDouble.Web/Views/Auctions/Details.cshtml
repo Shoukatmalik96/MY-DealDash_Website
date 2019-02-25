@@ -18,7 +18,7 @@
 						{
 							var active = picture == firstAuctionPicture ? "active" : string.Empty;
 
-							<li  class="@active" data-target="#carouselIndicators" data-slide-to="@i"></li>
+							<li class="@active" data-target="#carouselIndicators" data-slide-to="@i"></li>
 							i++;
 						}
 					</ol>
@@ -27,7 +27,7 @@
 						@foreach (var auctionPicture in Model.Auction.AuctionPictures)
 						{
 							var active = auctionPicture == firstAuctionPicture ? "active" : string.Empty;
-							var PicURL = "/Content/images/" + auctionPicture.picture.URL ;
+							var PicURL = "/Content/images/" + auctionPicture.picture.URL;
 
 							<div class="@active carousel-item">
 								<img class="d-block img-fluid" src="@PicURL">
@@ -45,11 +45,24 @@
 				</div>
 			}
 			<div class="card-body">
-				<h3 class="card-title">@Model.Auction.Title</h3>
-				<h4>$@Model.Auction.ActualAmount</h4>
-				<p class="card-text">@Model.Auction.Description!</p>
-				<span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-				4.0 stars
+					<h3 class="card-title">@Model.Auction.Title</h3>
+					<h4>
+						$@Model.BidsAmount
+
+						@if (Model.LatestBidder != null)
+						{
+							<text>
+								[ @Model.LatestBidder.UserName ]
+							</text>
+						}
+
+					</h4>
+					<p class="card-text">@Model.Auction.Description</p>
+					<span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+					4.0 stars
+				</div>
+			<div class="card-footer text-muted">
+				<Button class="btn btn-primary" id="btnBidNow">Bid Now </Button>
 			</div>
 		</div>
 			<!-- /.card -->
@@ -77,3 +90,25 @@
 		<!-- /.col-lg-9 -->
 
 	</div>
+<script>
+	$("#btnBidNow").click(function () {
+		$.ajax({
+			url: "@Url.Action("Bid", "Bids")",
+			type: "post",
+			data: {
+				ID: '@Model.Auction.ID'
+			}
+		}).done(function (response) {
+			debugger;
+			if (response.Success)
+			{
+				window.location.reload();
+			}
+			else {
+				swal("Error!", response.Message, "error");
+			}
+		}).fail(function () {
+			swal("Error!", "Error Occured. Please try again later.", "error");
+		});
+	});
+</script>
