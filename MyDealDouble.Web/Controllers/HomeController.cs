@@ -15,11 +15,21 @@ namespace MyDealDouble.Web.Controllers
 		{
 			AuctionsViewModels vModel = new AuctionsViewModels();
 
-			vModel .AllAuctions= AuctionsService.GetAuctions();
-			vModel.PromotedAuctions = AuctionsService.GetAuctions();
 			vModel.PageTitle = "Home Page";
 			vModel.PageDescription = "This is Home Page";
-			
+
+			//var auctions = AuctionsService.GetAuctions();
+
+			//vModel.AllAuctions = new List<MyDealDouble.Entities.Auction>();
+			//vModel.AllAuctions.AddRange(auctions);
+			//vModel.AllAuctions.AddRange(auctions);
+			//vModel.AllAuctions.AddRange(auctions);
+			//vModel.AllAuctions.AddRange(auctions);
+			//vModel.AllAuctions.AddRange(auctions);
+			//vModel.AllAuctions.AddRange(auctions);
+			//vModel.AllAuctions.AddRange(auctions);
+
+			//vModel.PromotedAuctions = AuctionsService.GetAuctions();
 			return View(vModel);
 		}
 

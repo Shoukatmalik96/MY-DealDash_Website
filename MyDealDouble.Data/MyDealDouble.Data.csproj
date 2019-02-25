@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DealDashDataContext.cs" />
+    <Compile Include="DealDoubleDBInitializer.cs" />
     <Compile Include="Migrations\201902231052288_updateStuff.cs" />
     <Compile Include="Migrations\201902231052288_updateStuff.Designer.cs">
       <DependentUpon>201902231052288_updateStuff.cs</DependentUpon>
@@ -83,7 +84,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
