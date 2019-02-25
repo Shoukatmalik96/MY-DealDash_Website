@@ -3,7 +3,7 @@ namespace MyDealDouble.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class updateStuff : DbMigration
+    public partial class addedEntities : DbMigration
     {
         public override void Up()
         {
@@ -47,37 +47,20 @@ namespace MyDealDouble.Data.Migrations
                 .Index(t => t.CategoryID);
             
             CreateTable(
-                "dbo.Categories",
+                "dbo.Bids",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Description = c.String(),
+                        AuctionID = c.Int(nullable: false),
+                        UserID = c.String(maxLength: 128),
+                        BidAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Timestamp = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.AspNetRoles",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
-            CreateTable(
-                "dbo.AspNetUserRoles",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Auctions", t => t.AuctionID, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserID)
+                .Index(t => t.AuctionID)
+                .Index(t => t.UserID);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -124,32 +107,70 @@ namespace MyDealDouble.Data.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Auctions", "CategoryID", "dbo.Categories");
+            DropForeignKey("dbo.Bids", "UserID", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Auctions", "CategoryID", "dbo.Categories");
+            DropForeignKey("dbo.Bids", "AuctionID", "dbo.Auctions");
             DropForeignKey("dbo.AuctionPictures", "AuctionID", "dbo.Auctions");
             DropForeignKey("dbo.AuctionPictures", "PictureID", "dbo.Pictures");
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
-            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
-            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Bids", new[] { "UserID" });
+            DropIndex("dbo.Bids", new[] { "AuctionID" });
             DropIndex("dbo.Auctions", new[] { "CategoryID" });
             DropIndex("dbo.AuctionPictures", new[] { "PictureID" });
             DropIndex("dbo.AuctionPictures", new[] { "AuctionID" });
+            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Categories");
+            DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.AspNetUserRoles");
-            DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Categories");
+            DropTable("dbo.Bids");
             DropTable("dbo.Auctions");
             DropTable("dbo.Pictures");
             DropTable("dbo.AuctionPictures");

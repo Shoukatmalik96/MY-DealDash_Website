@@ -55,17 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DealDashDataContext.cs" />
-    <Compile Include="Migrations\201902231052288_updateStuff.cs" />
-    <Compile Include="Migrations\201902231052288_updateStuff.Designer.cs">
-      <DependentUpon>201902231052288_updateStuff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902231322571_BidEntity.cs" />
-    <Compile Include="Migrations\201902231322571_BidEntity.Designer.cs">
-      <DependentUpon>201902231322571_BidEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902231427083_updateBidEntity.cs" />
-    <Compile Include="Migrations\201902231427083_updateBidEntity.Designer.cs">
-      <DependentUpon>201902231427083_updateBidEntity.cs</DependentUpon>
+    <Compile Include="Migrations\201902251624326_addedEntities.cs" />
+    <Compile Include="Migrations\201902251624326_addedEntities.Designer.cs">
+      <DependentUpon>201902251624326_addedEntities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,14 +73,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902231052288_updateStuff.resx">
-      <DependentUpon>201902231052288_updateStuff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902231322571_BidEntity.resx">
-      <DependentUpon>201902231322571_BidEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902231427083_updateBidEntity.resx">
-      <DependentUpon>201902231427083_updateBidEntity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902251624326_addedEntities.resx">
+      <DependentUpon>201902251624326_addedEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
