@@ -55,21 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DealDashDataContext.cs" />
-    <Compile Include="Migrations\201902251624326_addedEntities.cs" />
-    <Compile Include="Migrations\201902251624326_addedEntities.Designer.cs">
-      <DependentUpon>201902251624326_addedEntities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902241014173_AddCommentEntity.cs" />
-    <Compile Include="Migrations\201902241014173_AddCommentEntity.Designer.cs">
-      <DependentUpon>201902241014173_AddCommentEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902241502564_reverntchanges.cs" />
-    <Compile Include="Migrations\201902241502564_reverntchanges.Designer.cs">
-      <DependentUpon>201902241502564_reverntchanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902241507017_addedRatingPropert.cs" />
-    <Compile Include="Migrations\201902241507017_addedRatingPropert.Designer.cs">
-      <DependentUpon>201902241507017_addedRatingPropert.cs</DependentUpon>
+    <Compile Include="Migrations\201902251637332_addedEnitities.cs" />
+    <Compile Include="Migrations\201902251637332_addedEnitities.Designer.cs">
+      <DependentUpon>201902251637332_addedEnitities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,17 +73,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902251624326_addedEntities.resx">
-      <DependentUpon>201902251624326_addedEntities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902241014173_AddCommentEntity.resx">
-      <DependentUpon>201902241014173_AddCommentEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902241502564_reverntchanges.resx">
-      <DependentUpon>201902241502564_reverntchanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902241507017_addedRatingPropert.resx">
-      <DependentUpon>201902241507017_addedRatingPropert.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902251637332_addedEnitities.resx">
+      <DependentUpon>201902251637332_addedEnitities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

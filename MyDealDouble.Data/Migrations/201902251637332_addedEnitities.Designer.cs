@@ -7,13 +7,13 @@ namespace MyDealDouble.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddCommentEntity : IMigrationMetadata
+    public sealed partial class addedEnitities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCommentEntity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedEnitities));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902241014173_AddCommentEntity"; }
+            get { return "201902251637332_addedEnitities"; }
         }
         
         string IMigrationMetadata.Source
