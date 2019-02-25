@@ -38,60 +38,52 @@
 
 		<div class="row">
 
+			<div class="card-group">
 
-			@foreach (var auction in Model.PromotedAuctions)
-			{
+				@foreach (var auction in Model.PromotedAuctions)
+				{
 
-				var PicURl = auction.AuctionPictures != null && auction.AuctionPictures .Count > 0 ? 
-									"/Content/images/"+auction.AuctionPictures.First().picture.URL : "http://placehold.it/700x400";
+					var PicURl = auction.AuctionPictures != null && auction.AuctionPictures.Count > 0 ?
+										"/Content/images/" + auction.AuctionPictures.First().picture.URL : "http://placehold.it/700x400";
 
-				<div class="col-lg-4 col-md-6 mb-4">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top" src="@PicURl" alt=""></a>
+					<div class="card">
+						<img src="@PicURl" class="card-img-top" alt="">
 						<div class="card-body">
-							<h4 class="card-title">
-								<a href="@Url.Action("Details","Auctions",new { ID=auction.ID})">@auction.Title</a>
-							</h4>
-							<h5>$@auction.ActualAmount</h5>
+							<h5 class="card-title"><a href="@Url.Action("Details","Auctions",new { ID=auction.ID})">@auction.Title</a></h5>
 							<p class="card-text">@auction.Description!</p>
 						</div>
 						<div class="card-footer">
-							<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+							<small class="text-muted">Last updated @auction.EndingTime mins ago</small>
 						</div>
 					</div>
-				</div>
-
-			}
+				}
+			</div>
 
 		</div>
 		<div class="row">
 
+			<div class="card-group">
+				@foreach (var auction in Model.AllAuctions)
+				{
+					var picURL = auction.AuctionPictures != null & auction.AuctionPictures.Count > 0 ? "/Content/images/" + auction.AuctionPictures.First().picture.URL : "http://placehold.it/700x400";
 
-			@foreach (var auction in Model.AllAuctions)
-			{
-				var picURL = auction.AuctionPictures != null & auction.AuctionPictures.Count > 0 ? "/Content/images/"+auction.AuctionPictures.First().picture.URL : "http://placehold.it/700x400";
-				<div class="col-lg-4 col-md-6 mb-4">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top" src="@picURL" alt=""></a>
+					<div class="card">
+						<img src="@picURL" class="card-img-top" alt="">
 						<div class="card-body">
-							<h4 class="card-title">
-								<a href="@Url.Action("Details","Auctions",new { ID =auction.ID})">@auction.Title</a>
-							</h4>
-							<h5>$@auction.ActualAmount</h5>
-							<p class="card-text">@auction.Description!</p>
+							<h5 class="card-title"><a href="@Url.Action("Details","Auctions",new { ID =auction.ID})">@auction.Title</a></h5>
+							<p class="card-text">@auction.Description.</p>
 						</div>
 						<div class="card-footer">
-							<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+							<small class="text-muted">Last updated @auction.EndingTime mins ago</small>
 						</div>
 					</div>
-				</div>
 
-			}
+				}
+
+			</div>
+			<!-- /.row -->
 
 		</div>
-		<!-- /.row -->
-
-	</div>
 	<!-- /.col-lg-9 -->
 
 </div>

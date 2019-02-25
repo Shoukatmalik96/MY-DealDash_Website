@@ -16,7 +16,7 @@ namespace MyDealDouble.Web.Controllers
 			AuctionsViewModels vModel = new AuctionsViewModels();
 
 			vModel .AllAuctions= AuctionsService.GetAuctions();
-			vModel.PromotedAuctions = AuctionsService.GetAuctions();
+			vModel.PromotedAuctions = AuctionsService.GetPromotedAuctions();
 			vModel.PageTitle = "Home Page";
 			vModel.PageDescription = "This is Home Page";
 			

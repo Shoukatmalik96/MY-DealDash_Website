@@ -27,7 +27,7 @@ namespace MyDealDouble.Services
 		public List<Auction> GetPromotedAuctions()
 		{
 			List<Auction> result = null;
-			result = context.Auctions.Take(4).ToList();
+			result = context.Auctions.Take(3).ToList();
 			return result;
 		}
 		public void saveAuction(Auction auction)
