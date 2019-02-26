@@ -21,7 +21,16 @@ namespace MyDealDouble.Services
 		public List<Auction> GetAuctions()
 		{
 			List<Auction> result = null;
-			result = context.Auctions.ToList();
+
+			var auctions = context.Auctions.AsQueryable();
+			if (auctions.Count() > 0 )
+			{
+				result = auctions.ToList();
+			}
+			else
+			{
+				result = new List<Auction>();
+			}
 			return result;
 		}
 		public List<Auction> GetPromotedAuctions()

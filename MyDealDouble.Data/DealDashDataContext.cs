@@ -13,7 +13,7 @@ namespace MyDealDouble.Data
 	{
 		public DealDashDataContext():base("name=DealDashDataContext")
 		{
-
+			Database.SetInitializer<DealDashDataContext>(new MyDealDoubleDBInitializer());
 		}
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Auction> Auctions { get; set; }

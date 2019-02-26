@@ -16,25 +16,20 @@ namespace MyDealDouble.Services
 		{
 			return context.Categories.ToList();
 		}
-
 		public Category GetCategoryByID(int ID)
 		{
 			return context.Categories.Find(ID);
 		}
-
 		public void SaveCategory(Category category)
 		{
 			context.Categories.Add(category);
 			context.SaveChanges();
 		}
-
 		public void UpdateCategory(Category category)
 		{
 			context.Entry(category).State = System.Data.Entity.EntityState.Modified;
 			context.SaveChanges();
 		}
-
-
 		public void DeleteCategory(Category category)
 		{
 			context.Entry(category).State = System.Data.Entity.EntityState.Deleted;
