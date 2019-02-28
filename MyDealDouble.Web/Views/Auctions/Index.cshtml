@@ -1,8 +1,9 @@
 ﻿@model MyDealDouble.Web.viewModels.AuctionsListingViewModel
 @{
 	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-@{
+@{	
 	var categoryID = Model.CategoryID.HasValue ? Model.CategoryID.Value : 0;
 }
 <div class="row">

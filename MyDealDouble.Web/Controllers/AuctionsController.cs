@@ -29,7 +29,7 @@ namespace MyDealDouble.Web.Controllers
 			model.PageNo = pageNo;
 
 			model.Categories = categoriesService.GetAllCategories();
-			return View(model);
+			return PartialView(model);
 			
 		}
 
