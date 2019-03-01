@@ -1,40 +1,41 @@
-﻿@model MyDealDouble.Web.viewModels.AuctionsListingViewModel
+﻿@model MyDealDouble.Web.viewModels.UsersViewModel
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = "Users";
 	Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
+
 @{
-	var categoryID = Model.CategoryID.HasValue ? Model.CategoryID.Value : 0;
+	var roleID = string.IsNullOrEmpty(Model.RoleID) ? Model.RoleID : string.Empty;
 }
 <div class="row">
 	<div class="col-lg-12 col-md-12">
-		<h2>Auctions</h2>
+		<h2>Users</h2>
 		<hr />
 	</div>
 	<div class="col-md-10">
 
+
 		<form method="post">
 			<div class="input-group mb-3">
 				<input name="searchTerm" type="text" value="@Model.SearchTerm" class="form-control" placeholder="Search">
-				<select class=" from-control custom-select" name="categoryID">
-					<option>Select Category...</option>
-					@foreach (var category in Model.Categories)
+				<select class="form-control custom-select" name="categoryID">
+					<option>Select Roles...</option>
+					@foreach (var role in Model.Roles)
 					{
-						var selected = category.ID == categoryID ? "selected" : string.Empty;
-						<option value="@category.ID" @selected>@category.Name</option>
+						var selected = role.Id == roleID ? "selected" : string.Empty;
+						<option value="@role" @selected>@role.Name</option>
 					}
 				</select>
 
-				<a href="@Url.Action("Index","Auctions")" role="button" class="form-control btn btn-primary"><i class="fas fa-redo-alt"></i> Reset</a>
-				<button id="addNewbutton" type="button" class=" form-control btn-success"><i class="fas fa-plus-square"></i> Create New Auctions</button>
+				<button type="submit" class="form-control btn-primary"><i class="fas fa-search">Serach</i></button>
+				<a href="@Url.Action("Users","Dashboard")" role="button" class="form-control btn btn-primary"><i class="fas fa-redo-alt"></i> Reset</a>
+				@*<button id="addNewbutton" type="button" class=" form-control btn btn-success"><i class="fas fa-plus-square"></i> Create New Users</button>*@
+
 			</div>
 		</form>
 	</div>
-
-
-
-	<div id="listingArea">
-		@{Html.RenderAction("Listing"); }
+	<div class="col-lg-12" id="listingArea">
+		@{Html.RenderAction("UsersListing", new { roleID =Model.RoleID ,searchTerm =Model.SearchTerm, pageNo =Model.PageNo}); }
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -64,7 +65,7 @@
 		</div>
 	</div>
 </div>
-</div>
+
 
 <div id="imageTemplate" style="display:none">
 	<img class='image  img-fluid' src='' />

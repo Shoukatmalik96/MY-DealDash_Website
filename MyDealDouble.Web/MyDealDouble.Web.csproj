@@ -193,6 +193,7 @@
     <Compile Include="viewModels\AuctionsViewModels.cs" />
     <Compile Include="viewModels\BaseViewModels.cs" />
     <Compile Include="viewModels\CategoriesViewModel.cs" />
+    <Compile Include="viewModels\DashboardViewModel.cs" />
     <Compile Include="viewModels\SharedViewModals.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -402,6 +403,8 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\Users.cshtml" />
+    <Content Include="Views\Dashboard\_UsersListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

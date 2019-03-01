@@ -78,6 +78,7 @@
     <Compile Include="AuctionsService.cs" />
     <Compile Include="BidsService.cs" />
     <Compile Include="CategoriesService.cs" />
+    <Compile Include="DashboardService.cs" />
     <Compile Include="DealDoubleSingInManager.cs" />
     <Compile Include="DealDoubleUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
