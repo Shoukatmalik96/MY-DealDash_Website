@@ -12,6 +12,8 @@
 
 	<link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/dashboard/">
 
+	<!-- Font Awesome cdn -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<!-- Javascript -->
 	<script src="@Url.Content("~/Content/vendor/jquery/jquery.min.js")"></script>
 	<!-- Bootstrap core CSS -->
@@ -26,7 +28,7 @@
 		<input class="form-control form-control-dark w-100 bg-dark" value=" Hi @User.Identity.Name">
 		<ul class="navbar-nav px-3">
 			<li class="nav-item text-nowrap">
-				<a class="nav-link" href="/">Sign out</a>
+				<a id="btnLogOff" class="nav-link" href="#">LogOff</a>
 			</li>
 		</ul>
 	</nav>
@@ -71,13 +73,13 @@
 					</h6>
 					<ul class="nav flex-column mb-2">
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="@Url.Action("Users","Dashboard")">
 								<span data-feather="file-text"></span>
 								Users
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="@Url.Action("Roles","Dashboard")">
 								<span data-feather="file-text"></span>
 								Roles
 							</a>
@@ -91,9 +93,23 @@
 			</main>
 		</div>
 	</div>
-	
+
+	<!---LofOff Form --->
+	<form id="logOffForm" method="post" action="@Url.Action("LogOff","Account")">
+		@Html.AntiForgeryToken()
+	</form>
+
 
 	<!-- Bootstrap  -->
 	<script src="@Url.Content("~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
+
+	<script>
+
+		$("#btnLogOff").click(function () {
+			$("#logOffForm").submit();
+		});
+	</script>
+	<!--Render Section Scripts-->
+	@RenderSection("Scripts", required: false);
 </body>
 </html>

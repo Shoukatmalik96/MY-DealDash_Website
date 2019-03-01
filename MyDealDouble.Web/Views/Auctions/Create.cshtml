@@ -56,8 +56,9 @@
 	</div>
 </form>
 
-<script>
+@section Scripts{
 
+<script>
 	$("#saveButton").click(function () {
 
 
@@ -76,40 +77,40 @@
 			data: $("#CreateForm").serialize()
 		}).done(function (response) {
 
-			
+
 			$("#listingArea").html(response);
 			$('#formModal').modal('toggle');
 		});
 	});
 
-		$("#auctionPictures").change(function () {
+	$("#auctionPictures").change(function () {
 
-			var pictures = this.files;
-			var picsData = new FormData();
+		var pictures = this.files;
+		var picsData = new FormData();
 
-			for (var i = 0; i < pictures.length; i++) {
-				picsData.append("Picture", pictures[i]);
-			}
+		for (var i = 0; i < pictures.length; i++) {
+			picsData.append("Picture", pictures[i]);
+		}
 
-		$.ajax({
-			url: "@Url.Action("UploadPictures", "Shared")",
-			type: "post",
-			data: picsData,
-			dateType: "json",
-			processData: false,
-			contentType: false
-		})
-			.done(function (responses) {
-				
-				for (var i = 0; i < responses.length; i++) {
-					
-					var picResponse = responses[i];
-					AttachNewImage(picResponse.pictureURL, picResponse.ID);
-					
-			    }
-		    });
+	$.ajax({
+		url: "@Url.Action("UploadPictures", "Shared")",
+		type: "post",
+		data: picsData,
+		dateType: "json",
+		processData: false,
+		contentType: false
+	})
+		.done(function (responses) {
+
+			for (var i = 0; i < responses.length; i++) {
+
+				var picResponse = responses[i];
+				AttachNewImage(picResponse.pictureURL, picResponse.ID);
+
+		    }
 	    });
-	 
+	  });
+
 	function AttachNewImage(imageURL, imageID) {
 
 		var $newimgHTML = $("#imageTemplate").clone();
@@ -123,4 +124,5 @@
 		RemoveImagesOnClick();
 	}
 
-</script>
+  </script>
+}

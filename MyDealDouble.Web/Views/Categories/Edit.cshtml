@@ -29,9 +29,8 @@
 		<button class="btn btn-success" type="button" id="saveButton"><i class="fas fa-save"></i> Save</button>
 	</div>
 </form>
-
-<script>
-
+@section Scripts{
+ <script>
 	$("#saveButton").click(function () {
 		$.ajax({
 			url: "@Url.Action("Edit", "Categories")",
@@ -41,8 +40,8 @@
 		.done(function (response) {
 			$("#listingArea").html(response);
 			$('#formModal').modal('toggle');
-			
+
 		});
 	});
-
-</script>
+ </script>
+}

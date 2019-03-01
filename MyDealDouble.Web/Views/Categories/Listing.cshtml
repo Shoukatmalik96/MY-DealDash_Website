@@ -39,6 +39,7 @@
 	</tbody>
 </table>
 
+@section Scripts{
 <script>
 	$(".editButton").click(function () {
 		$.ajax({
@@ -57,4 +58,5 @@
 		$('#deleteModal').modal('toggle');
 		$('#mDeleteButton').attr("data-recordID", $(this).attr("data-id"));
 	});
-</script>
+ </script>
+}

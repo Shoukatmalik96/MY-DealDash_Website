@@ -48,10 +48,9 @@
 	@Html.AntiForgeryToken()
 </form>
 
-<script>
+	<script>
+		$("#btnLogOff").click(function () {
+			$("#logOffForm").submit();
+		});
+	</script>
 
-	$("#btnLogOff").click(function () {
-
-		$("#logOffForm").submit();
-	});
-</script>

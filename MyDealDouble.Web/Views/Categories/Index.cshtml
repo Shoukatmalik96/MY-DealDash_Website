@@ -41,7 +41,8 @@
 	</div>
 </div>
 
-<script>
+@section Scripts{
+ <script>
 	$("#createButton").click(function () {
 		$.ajax({
 			url: "@Url.Action("Create", "Categories")",
@@ -50,8 +51,7 @@
 			$('#formModal').modal('toggle');
 			$("#contentArea").html(response);
 		});
-	});
-
+	 });
 
 	$("#mDeleteButton").click(function () {
 		$.ajax({
@@ -67,4 +67,5 @@
 		});
 	});
 
-</script>
+ </script>
+}
