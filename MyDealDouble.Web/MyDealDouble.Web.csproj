@@ -298,6 +298,7 @@
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\css\dashboard.css" />
     <Content Include="Content\css\shop-homepage.css" />
+    <Content Include="Content\css\simple-sidebar.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.js" />
