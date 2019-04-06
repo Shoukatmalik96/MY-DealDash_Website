@@ -13,80 +13,19 @@
 	<meta name="author" content="">
 
 	<title>Simple Sidebar - Start Bootstrap Template</title>
-	<!-- Bootstrap core CSS -->
-	<link href="@Url.Content("~/Content/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+
+	<script src="@Url.Content("/Content/vendor/jquery/jquery.min.js")"></script>
+	<script src="@Url.Content("/Content/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
 	<!-- Custom styles for this template -->
 	<link href="~/Content/css/simple-sidebar.css" rel="stylesheet" />
 	<!-- Font Awesome cdn -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!-- Javascript -->
-	<script src="@Url.Content("~/Content/vendor/jquery/jquery.min.js")"></script>
+	<!-- Javascript -->
+	<script src="@Url.Content("/Content/vendor/jquery/jquery.min.js")"></script>
 	<!-- Bootstrap core CSS -->
-	<link href="@Url.Content("~/Content/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+	<link href="@Url.Content("/Content/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
 </head>
 <body>
-	
-	@*<div class="container-fluid">
-			<div class="row">
-				<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-					<div class="sidebar-sticky">
-						<ul class="nav flex-column">
-							<li class="nav-item">
-								<a class="nav-link active" href="@Url.Action("Index","Dashboard")">
-									<span data-feather="home"></span>
-									<b>Dashboard</b> <span class="sr-only">(current)</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="@Url.Action("Index","Categories")">
-									<span data-feather="shopping-cart"></span>
-									Categories
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="@Url.Action("Index","Auctions")">
-									<span data-feather="file"></span>
-									Auctions
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									<span data-feather="users"></span>
-									Bids
-								</a>
-							</li>
-
-						</ul>
-
-						<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-							<span>Users Menu</span>
-							<a class="d-flex align-items-center text-muted" href="#">
-								<span data-feather="plus-circle"></span>
-							</a>
-						</h6>
-						<ul class="nav flex-column mb-2">
-							<li class="nav-item">
-								<a class="nav-link" href="@Url.Action("Users","Dashboard")">
-									<span data-feather="file-text"></span>
-									Users
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="@Url.Action("Roles","Dashboard")">
-									<span data-feather="file-text"></span>
-									Roles
-								</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
-
-				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-					@RenderBody()
-				</main>
-			</div>
-		</div>*@
-
 	<div class="d-flex" id="wrapper">
 
 		<!-- Sidebar -->
@@ -99,6 +38,10 @@
 				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Home")">
 					<i class="mr-1 fas fa-home"></i>
 					Home
+				</a>
+				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Home")">
+					<i class="fas fa-user-shield"></i>
+					Dashboard
 				</a>
 				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Categories")">
 					<i class="fas fa-sitemap"></i>
@@ -125,9 +68,9 @@
 					Roles
 				</a>
 				@*<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Status</a>*@
+		<a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+		<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+		<a href="#" class="list-group-item list-group-item-action bg-light">Status</a>*@
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -175,9 +118,7 @@
 
 	</div>
 	<!-- /#wrapper -->
-	<!-- Bootstrap core JavaScript -->
-	@*<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+	
 
 	<!-- Menu Toggle Script -->
 	@*<script>
@@ -197,6 +138,8 @@
 			});
 	</script>*@
 	<!--Render Section Scripts-->
+
 	@RenderSection("Scripts", required: false);
+
 </body>
 </html>

@@ -94,7 +94,7 @@
 			}
 		}).done(function (response) {
 
-			$("#formModal").modal('toggle');
+			//$("#formModal").modal('toggle');
 			$("#ContentArea").html(response);
 
 		}).fail(function () {
@@ -104,7 +104,7 @@
 
 	$(".deleteButton").click(function () {
 
-		$('#deleteModal').modal('toggle');
+		//$('#deleteModal').modal('toggle');
 		$('#mDeleteButton').attr("data-recordID", $(this).attr("data-id"));
 	});
 </script>

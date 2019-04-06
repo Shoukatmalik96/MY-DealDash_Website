@@ -63,7 +63,8 @@
 		})
 		.done(function (response) {
 			$("#listingArea").html(response);
-			$('#deleteModal').modal('toggle');
+			//$('#deleteModal').modal('toggle');
+			window.location.reload();
 		});
 	});
 
