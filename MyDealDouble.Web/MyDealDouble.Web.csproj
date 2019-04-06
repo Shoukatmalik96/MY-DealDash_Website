@@ -296,7 +296,6 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Content\css\dashboard.css" />
     <Content Include="Content\css\shop-homepage.css" />
     <Content Include="Content\css\simple-sidebar.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />

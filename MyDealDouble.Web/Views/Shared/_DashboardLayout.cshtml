@@ -13,40 +13,19 @@
 	<meta name="author" content="">
 
 	<title>Simple Sidebar - Start Bootstrap Template</title>
-
 	<!-- Bootstrap core CSS -->
 	<link href="@Url.Content("~/Content/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
 	<!-- Custom styles for this template -->
 	<link href="~/Content/css/simple-sidebar.css" rel="stylesheet" />
+	<!-- Font Awesome cdn -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-	@*<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Dashboard</title>
-
-		<link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/dashboard/">
-
-		<!-- Font Awesome cdn -->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-		<!-- Javascript -->
-		<script src="@Url.Content("~/Content/vendor/jquery/jquery.min.js")"></script>
-		<!-- Bootstrap core CSS -->
-		<link href="@Url.Content("~/Content/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
-
-		<!-- Custom styles for this template -->
-		<link href="~/Content/css/dashboard.css" rel="stylesheet" />*@
+    <!-- Javascript -->
+	<script src="@Url.Content("~/Content/vendor/jquery/jquery.min.js")"></script>
+	<!-- Bootstrap core CSS -->
+	<link href="@Url.Content("~/Content/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
 </head>
 <body>
-	@*<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Deal Double</a>
-			<input class="form-control form-control-dark w-100 bg-dark" value=" Hi @User.Identity.Name">
-			<ul class="navbar-nav px-3">
-				<li class="nav-item text-nowrap">
-					<a id="btnLogOff" class="nav-link" href="#">LogOff</a>
-				</li>
-			</ul>
-		</nav>*@
-
+	
 	@*<div class="container-fluid">
 			<div class="row">
 				<nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -185,11 +164,11 @@
 				</div>
 			</nav>
 
-			<div class="container-fluid">
+			@*<div class="container-fluid">
 				<h1 class="mt-4">Simple Sidebar</h1>
 				<p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
 				<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-			</div>
+			</div>*@
 			@RenderBody()
 		</div>
 		<!-- /#page-content-wrapper -->
@@ -197,32 +176,27 @@
 	</div>
 	<!-- /#wrapper -->
 	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	@*<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>*@
 
 	<!-- Menu Toggle Script -->
-	<script>
+	@*<script>
 		$("#menu-toggle").click(function (e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
 		});
-	</script>
+	</script>*@
 	<!---LofOff Form --->
-	<form id="logOffForm" method="post" action="@Url.Action("LogOff","Account")">
+	@*<form id="logOffForm" method="post" action="@Url.Action("LogOff","Account")">
 		@Html.AntiForgeryToken()
-	</form>
-
-
-	@*<!-- Bootstrap  -->
-		<script src="@Url.Content("~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
-
-		<script>
+	</form>*@
+	@*<script>
 
 			$("#btnLogOff").click(function () {
 				$("#logOffForm").submit();
 			});
-		</script>
-		<!--Render Section Scripts-->
-		@RenderSection("Scripts", required: false);*@
+	</script>*@
+	<!--Render Section Scripts-->
+	@RenderSection("Scripts", required: false);
 </body>
 </html>
