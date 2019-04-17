@@ -1,0 +1,118 @@
+﻿@model MyDealDouble.Web.viewModels.UsersListingViewModel
+@{
+	ViewBag.Title = "Index";
+}
+
+<table class="table table-hover">
+	<thead class="bg-secondary">
+		<tr>
+
+			<th>Name</th>
+			<th>Username</th>
+			<th>Email</th>
+			<th>Roles</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.Users != null && Model.Users.Count > 0)
+		{
+			foreach (var user in Model.Users)
+			{
+				<tr>
+					<td>@user.FullName</td>
+					<td>@user.UserName.</td>
+					<td>@user.Email</td>
+					@*<td>@string.Join(", ",user.Roles.Select(x=>x.RoleId))</td>*@
+					<td>@user.Roles.Count()</td>
+					<td>
+
+						<input type="hidden" value="@user.Id" />
+						<a href="@Url.Action("UserDetaisl","Dashboard",new { UserID =user.Id})" class="moreButton btn btn-primary" data-id="@user.Id" data-toggle="modal" data-target="#formModal"><i class="fas fa-edit"></i>  More Details</a>
+
+						@*<Button class="moreButton btn btn-primary" data-id="@user.Id" data-toggle="modal" data-target="#formModal"><i class="fas fa-edit"></i>  More Details</Button>*@
+					</td>
+				</tr>
+			}
+		}
+		else
+		{
+			<tr>
+				<td class="text-center" colspan="7">
+					No Result Found.
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@if (Model.Pager != null && Model.Pager.TotalPages > 0)
+{
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+
+			@if (Model.Pager.CurrentPage == 1)
+			{
+				<li class="page-item disabled">
+					<a class="page-link" href="#">Previous</a>
+				</li>
+			}
+			else
+			{
+				<li class="page-item">
+					<a class="page-link" href="@Url.Action("Users", "Dashboard", new { pageNo = Model.Pager.CurrentPage - 1, roleID = Model.RoleID, searchTerm = Model.SearchTerm })">Previous</a>
+				</li>
+			}
+
+			@for (int page = Model.Pager.StartPage; page < Model.Pager.EndPage + 1; page++)
+			{
+				var active = page == Model.Pager.CurrentPage ? "active" : string.Empty;
+
+				<li class="page-item @active">
+					<a class="page-link" href="@Url.Action("Users", "Dashboard", new { pageNo = page, roleID = Model.RoleID, searchTerm = Model.SearchTerm })">
+						@page
+					</a>
+				</li>
+			}
+
+			@if (Model.Pager.CurrentPage == Model.Pager.EndPage)
+			{
+				<li class="page-item disabled">
+					<a class="page-link" href="#">Next</a>
+				</li>
+			}
+			else
+			{
+				<li class="page-item">
+					<a class="page-link" href="@Url.Action("Users", "Dashboard", new { pageNo = Model.Pager.CurrentPage + 1, roleID = Model.RoleID, searchTerm = Model.SearchTerm })">Next</a>
+				</li>
+			}
+
+		</ul>
+	</nav>
+}
+@section Scripts{
+	<script>
+	$(".moreButton").click(function () {
+
+		$.ajax({
+			@*url: "@Url.Action("Edit","Auctions")",
+			type: "get",
+			data: {
+				Id: $(this).attr("data-id")
+			}
+		}).done(function (response) {
+
+			$("#formModal").modal('toggle');
+			$("#ContentArea").html(response);
+
+		}).fail(function () {
+			alert("Sorry ! Try Again")
+		});*@
+	});
+
+	
+	</script>
+}
+
+

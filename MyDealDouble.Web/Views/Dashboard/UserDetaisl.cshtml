@@ -1,0 +1,11 @@
+﻿@model MyDealDouble.Web.viewModels.UsersDetailsViewModel
+@{
+	ViewBag.Title = "UserDetaisl";
+}
+
+@if (Model != null && Model.User != null)
+{
+	<h2>@Model.User.UserName</h2>
+}
+
+

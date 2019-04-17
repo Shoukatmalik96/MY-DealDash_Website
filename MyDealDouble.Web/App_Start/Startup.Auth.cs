@@ -17,10 +17,14 @@ namespace MyDealDouble.Web
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+			
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(DealDashDataContext.Create);
+			
+			//Register SinginManager,UserManager and RoleManager
             app.CreatePerOwinContext<DealDoubleUserManager>(DealDoubleUserManager.Create);
             app.CreatePerOwinContext<DealDoubleSignInManager>(DealDoubleSignInManager.Create);
+			app.CreatePerOwinContext<DealDoubleRoleManager>(DealDoubleRoleManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider

@@ -64,7 +64,19 @@ namespace MyDealDouble.Web.Models
 
     public class RegisterViewModel: PageViewModel
 	{
-        [Required]
+		[Display(Name = "FullName")]
+		public string FullName { get; set; }
+
+		[Display(Name = "Country")]
+		public string Country { get; set; }
+
+		[Display(Name = "City")]
+		public string City { get; set; }
+
+		[Display(Name = "Address")]
+		public string Address { get; set; }
+
+		[Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
