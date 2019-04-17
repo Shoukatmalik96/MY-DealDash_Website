@@ -90,7 +90,7 @@ namespace MyDealDouble.Web.Controllers
 			}
 			if (!string.IsNullOrEmpty(searchTerm))
 			{
-				users = users.Where(x => x.Email.ToLower().Contains(searchTerm.ToLower()) ||x.UserName.ToLower().Contains(searchTerm.ToLower())).ToList();
+				users = users.Where(x => x.UserName.ToLower().Contains(searchTerm.ToLower()) ||x.UserName.ToLower().Contains(searchTerm.ToLower())).ToList();
 			}
 			pageNo = pageNo ?? 1;
 			var skipCount = (pageNo.Value - 1) * pageSize;
