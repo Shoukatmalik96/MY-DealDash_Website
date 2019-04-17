@@ -1,14 +1,39 @@
 ﻿@model MyDealDouble.Web.viewModels.DashboardViewModel
 @{
-	ViewBag.Title = "Index";
-	Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 <div class="jumbotron">
-	<h1 class="display-4">Hello, @User.Identity.Name!</h1>
-	<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-	<hr class="my-4">
-	<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-	<p class="lead">
-		<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-	</p>
+    <h5 class="display-4">Hello, @User.Identity.Name!</h5>
+    <p>welcome to Deal Double Dashboad .Below are a few demographics of Deal Double</p>
+</div>
+
+
+<div class="card-deck">
+    <div class="card">
+
+        <div class="card-body">
+            <h2 class="text-primary font-weight-light text-center">@Model.UserCount</h2>
+        </div>
+        <div class="card-footer">
+
+            <h2 class="text-primary font-weight-light text-center"><a href="@Url.Action("Users","Dashboard")">Users</a></h2>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="text-primary font-weight-light text-center">@Model.AuctionsCount</h2>
+        </div>
+        <div class="card-footer">
+            <h2 class="text-primary font-weight-light text-center">Auctions</h2>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="text-primary font-weight-light text-center">@Model.BidsCount</h2>
+        </div>
+        <div class="card-footer">
+            <h2 class="text-primary font-weight-light text-center">Bids</h2>
+        </div>
+    </div>
 </div>

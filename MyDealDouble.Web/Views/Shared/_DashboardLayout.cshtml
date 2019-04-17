@@ -26,67 +26,6 @@
 </head>
 <body>
 	
-	@*<div class="container-fluid">
-			<div class="row">
-				<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-					<div class="sidebar-sticky">
-						<ul class="nav flex-column">
-							<li class="nav-item">
-								<a class="nav-link active" href="@Url.Action("Index","Dashboard")">
-									<span data-feather="home"></span>
-									<b>Dashboard</b> <span class="sr-only">(current)</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="@Url.Action("Index","Categories")">
-									<span data-feather="shopping-cart"></span>
-									Categories
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="@Url.Action("Index","Auctions")">
-									<span data-feather="file"></span>
-									Auctions
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									<span data-feather="users"></span>
-									Bids
-								</a>
-							</li>
-
-						</ul>
-
-						<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-							<span>Users Menu</span>
-							<a class="d-flex align-items-center text-muted" href="#">
-								<span data-feather="plus-circle"></span>
-							</a>
-						</h6>
-						<ul class="nav flex-column mb-2">
-							<li class="nav-item">
-								<a class="nav-link" href="@Url.Action("Users","Dashboard")">
-									<span data-feather="file-text"></span>
-									Users
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="@Url.Action("Roles","Dashboard")">
-									<span data-feather="file-text"></span>
-									Roles
-								</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
-
-				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-					@RenderBody()
-				</main>
-			</div>
-		</div>*@
-
 	<div class="d-flex" id="wrapper">
 
 		<!-- Sidebar -->
@@ -95,40 +34,44 @@
 				<i class="fas fa-check-double"></i>
 			     Dashboard 
 			</div>
-			<div class="list-group list-group-flush">
-				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Home")">
-					<i class="mr-1 fas fa-home"></i>
-					Home
-				</a>
-				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Categories")">
-					<i class="fas fa-sitemap"></i>
-					Categories
-				</a>
-				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Auctions")">
-					<i class="fas fa-gavel"></i>
-					Auctions
-				</a>
-				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Bids")">
-					<i class="fas fa-business-time"></i>
-					Bids
-				</a>
-				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Categories")">
-					<i class="fas fa-comments"></i>
-					Comments
-				</a>
-				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Users","Dashboard")">
-					<i class="fas fa-users"></i>
-					Users
-				</a>
-				<a class="list-group-item list-group-item-action bg-light" href="@Url.Action("RolesListing","Dashboard")">
-					<i class="fas fa-user-tag"></i>
-					Roles
-				</a>
-				@*<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Status</a>*@
-			</div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Home")">
+                    <i class="mr-1 fas fa-home"></i>
+                    Home
+                </a>
+                <a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Dashboard")">
+                    <i class="fas fa-user-shield"></i>
+                    Dashboard
+                </a>
+                <a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Categories")">
+                    <i class="fas fa-sitemap"></i>
+                    Categories
+                </a>
+                <a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Auctions")">
+                    <i class="fas fa-gavel"></i>
+                    Auctions
+                </a>
+                <a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Bids")">
+                    <i class="fas fa-business-time"></i>
+                    Bids
+                </a>
+                <a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Index","Categories")">
+                    <i class="fas fa-comments"></i>
+                    Comments
+                </a>
+                <a class="list-group-item list-group-item-action bg-light" href="@Url.Action("Users","Dashboard")">
+                    <i class="fas fa-users"></i>
+                    Users
+                </a>
+                <a class="list-group-item list-group-item-action bg-light" href="@Url.Action("RolesListing","Dashboard")">
+                    <i class="fas fa-user-tag"></i>
+                    Roles
+                </a>
+                @*<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>*@
+            </div>
 		</div>
 		<!-- /#sidebar-wrapper -->
 		<!-- Page Content -->

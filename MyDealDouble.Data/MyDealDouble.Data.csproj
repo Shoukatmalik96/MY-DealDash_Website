@@ -55,6 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DealDashDataContext.cs" />
+    <Compile Include="Migrations\201902262010183_InitialCreate.cs" />
+    <Compile Include="Migrations\201902262010183_InitialCreate.Designer.cs">
+      <DependentUpon>201902262010183_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904171857407_added.cs" />
+    <Compile Include="Migrations\201904171857407_added.Designer.cs">
+      <DependentUpon>201904171857407_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDealDoubleDBInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,6 +76,14 @@
       <Project>{6E095580-A167-4B2C-8946-F355B418E265}</Project>
       <Name>MyDealDouble.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902262010183_InitialCreate.resx">
+      <DependentUpon>201902262010183_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904171857407_added.resx">
+      <DependentUpon>201904171857407_added.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
