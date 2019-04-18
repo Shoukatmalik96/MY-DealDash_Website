@@ -100,7 +100,7 @@ namespace MyDealDouble.Web.Controllers
 
 		}
 
-		public async Task<ActionResult> UserDetaisl(string UserID)
+		public async Task<ActionResult> UserDetaisl(string UserID,bool isPartial = false)
 		{
 			UsersDetailsViewModel model = new UsersDetailsViewModel();
 			var user = await UserManager.FindByIdAsync(UserID);
@@ -108,7 +108,15 @@ namespace MyDealDouble.Web.Controllers
 			{
 				model.User = user;
 			}
-			return View(model);
+			if (Request.IsAjaxRequest())
+			{
+				return PartialView("_UserDetails",model);
+			}
+			else
+			{
+				return View(model);
+			}
+			
 		}
 		public ActionResult RolesListing(string searchTerm, int? pageNo)
 		{

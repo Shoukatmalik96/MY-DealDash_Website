@@ -1,0 +1,49 @@
+﻿@model MyDealDouble.Web.viewModels.UsersDetailsViewModel
+@if (Model != null && Model.User != null)
+{
+<form>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Full Name</label>
+		<div class="col-sm-10">
+			<input name="FullName" class="form-control" value="@Model.User.FullName" required />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Country</label>
+		<div class="col-sm-10">
+			<input name="Country" class="form-control" value="@Model.User.Country" required />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">City</label>
+		<div class="col-sm-10">
+			<input name="City" class="form-control" value="@Model.User.City" required />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Address</label>
+		<div class="col-sm-10">
+			<input name="Address" class="form-control" value="@Model.User.Address" required />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Email</label>
+		<div class="col-sm-10">
+			<input name="Email" class="form-control" value="@Model.User.Email" required />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Username</label>
+		<div class="col-sm-10">
+			<input name="Username" class="form-control" value="@Model.User.UserName" required />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Full Name</label>
+		<div class="col-sm-10">
+			<input name="FullName" class="form-control" value="@Model.User.FullName" required />
+		</div>
+	</div>
+
+</form>
+}
