@@ -1,0 +1,120 @@
+﻿@model MyDealDouble.Web.viewModels.UserRolesViewModel
+@if (Model != null)
+{
+	<h3>
+		Current User Roles
+	</h3>
+	if (Model.UserRoles != null && Model.UserRoles.Count > 0)
+	{
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Role</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var role in Model.UserRoles)
+				{
+
+					<tr>
+						<td>@role.Id</td>
+						<td>@role.Name</td>
+						<td>
+							<button type="button" class="btn btn-danger btn-sm btnDeleteRole" data-id="@role.Id"><i class="fas fa-trash-alt"></i>Delete</button>
+						</td>
+
+					</tr>
+
+				}
+			</tbody>
+		</table>
+
+	}
+	else
+	{
+
+	}
+	var userCanHaveRoles = Model.AvailableRoles.Where(r => Model.UserRoles.FirstOrDefault(ur => ur.Id == r.Id) == null);
+	if (userCanHaveRoles != null && userCanHaveRoles.Count() > 0)
+	{
+		<h5>
+			Assing New Roles
+		</h5>
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<td>
+						<select class="form-control" id="sltAssingRoles">
+							<option value="">Please Select</option>
+							@foreach (var role in userCanHaveRoles)
+							{
+								<option value="@role.Id">@role.Name</option>
+							}
+						</select>
+					</td>
+					<td>
+						<button id="btnAssignRole" type="button" class="btn btn-success">Assign</button>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	}
+}
+
+<script>
+		$("#btnAssignRole").click(function () {
+
+			debugger
+			var roleID = $("#sltAssingRoles").val();
+			if (roleID != undefined && roleID != "") {
+
+				$.ajax({
+					url: "@Url.Action("AssignUserRole", "Dashboard",new { userID =Model.User.Id})",
+					type: "post",
+					data: {
+						roleID: roleID
+					}
+
+				}).done(function (response) {
+
+					$(".modal-loader").hide();
+					$("#response-holder").html(response);
+				});
+
+			}
+			else {
+
+			}
+	    });
+
+	    $(".btnDeleteRole").click(function () {
+
+			debugger
+			var roleID = $(this).attr("data-id");
+			if (roleID != undefined && roleID != "") {
+				debugger
+				$.ajax({
+					
+					url: "@Url.Action("DeleteUserRole", "Dashboard",new { userID =Model.User.Id})",
+					type: "post",
+					data: {
+						roleID: roleID
+					}
+
+				}).done(function (response) {
+
+					$(".modal-loader").hide();
+					$("#response-holder").html(response);
+				});
+
+			}
+			else {
+
+			}
+		});
+</script>

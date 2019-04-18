@@ -118,6 +118,56 @@ namespace MyDealDouble.Web.Controllers
 			}
 			
 		}
+		public async Task<ActionResult> UserRoles(string userID)
+		{
+			UserRolesViewModel model = new UserRolesViewModel();
+			model.AvailableRoles = RoleManager.Roles.ToList();
+			
+			
+			if (!string.IsNullOrEmpty(userID))
+			{
+				model.User = await UserManager.FindByIdAsync(userID);
+				if (model.User!=null)
+				{
+					model.UserRoles = model.User.Roles.Select(userRoles => model.AvailableRoles.FirstOrDefault(role => role.Id ==userRoles.RoleId)).ToList();
+				}
+			}
+			
+		    return PartialView("_UserRoles", model);
+			
+		}
+		public async Task<ActionResult> AssignUserRole(string userID,string roleID)
+		{
+			if (!string.IsNullOrEmpty(userID) && !string.IsNullOrEmpty(roleID))
+			{
+				var user = await UserManager.FindByIdAsync(userID);
+				if (user != null)
+				{
+					var role = await RoleManager.FindByIdAsync(roleID);
+					if (role !=null)
+					{
+						await UserManager.AddToRolesAsync(userID, role.Name);
+					}
+				}
+			}
+			return RedirectToAction("UserRoles",new { userID = userID});
+		}
+		public async Task<ActionResult> DeleteUserRole(string userID, string roleID)
+		{
+			if (!string.IsNullOrEmpty(userID) && !string.IsNullOrEmpty(roleID))
+			{
+				var user = await UserManager.FindByIdAsync(userID);
+				if (user != null)
+				{
+					var role = await RoleManager.FindByIdAsync(roleID);
+					if (role != null)
+					{
+						await UserManager.RemoveFromRoleAsync(userID, role.Name);
+					}
+				}
+			}
+			return RedirectToAction("UserRoles", new { userID = userID });
+		}
 		public ActionResult RolesListing(string searchTerm, int? pageNo)
 		{
 			var pageSize = 1;

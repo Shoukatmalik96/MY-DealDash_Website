@@ -45,4 +45,15 @@ namespace MyDealDouble.Web.viewModels
 		public string Name { get; set; }
 		public string SearchTerm { get; set; }
 	}
+	public class UserRolesViewModel : PageViewModel
+	{
+		public DealDoubleUser User { get; set; }
+		//public Pager Pager { get; set; }
+		//public object RoleID { get; set; }
+		//public string Name { get; set; }
+		//public string SearchTerm { get; set; }
+		public List<IdentityRole> AvailableRoles { get; set; } = new List<IdentityRole>();
+		public List<IdentityRole> UserRoles { get; set; } = new List<IdentityRole>();
+		
+	}
 }

@@ -45,13 +45,13 @@
 							<a class="user-link nav-link " data-href="@Url.Action("UserDetails", "Dashboard", new { userID = Model.User.Id })">Info</a>
 						</li>
 						<li class="nav-item">
-							<a class="user-link nav-link" href="#">Users</a>
+							<a class="user-link nav-link " data-href="@Url.Action("UserRoles", "Dashboard", new { userID = Model.User.Id })">Roles</a>
 						</li>
 						<li class="nav-item">
-							<a class="user-link nav-link disabled" href="#">Bids</a>
+							<a class="user-link nav-link " data-href="@Url.Action("UserDetails", "Dashboard", new { userID = Model.User.Id })">Comments</a>
 						</li>
 						<li class="nav-item">
-							<a class="user-link nav-link disabled" href="#">Comments</a>
+							<a class="user-link nav-link " data-href="@Url.Action("UserDetails", "Dashboard", new { userID = Model.User.Id })">Bids</a>
 						</li>
 					</ul>
 				</div>
@@ -74,14 +74,14 @@
 			
 				$(".user-link").removeClass("active");
 				$(this).addClass("active");
-				debugger
+				
 				$.ajax({
 					type:"get",
 				     url:url 
 				}).done(function (response) {
-					debugger
+					
 				    $(".modal-loader").hide();
-					$("#response-holder").htm(response);
+					$("#response-holder").html(response);
 				});
 			}
        });
